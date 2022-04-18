@@ -7,10 +7,10 @@ This project will be useful to people in the service industries. Many people wor
 ### Installation:
 We use gradle to handle our dependancies and will import the SQLite package for out database. We will be using the minimum APK Android 8.0 (Oreo) and developing using the Java language. 
 
-To build our project you must first clone the repo: git clone git@github.com:MackenzieNelson/Capstone---ServiceSolutions-TipTracker.git
+1. To build our project you must first clone the repo: git clone git@github.com:MackenzieNelson/Capstone---ServiceSolutions-TipTracker.git
 
-Then open Android Studio and select file open -> ServiceSolutions-TipTracker
+2. Then open Android Studio and select file open -> ServiceSolutions-TipTracker
 
-From there you should be able to do a gradle sync automatically or force one through the Android Studio menu if it does not sync automatically.
+3. From there you should be able to do a gradle sync automatically or force one through the Android Studio menu if it does not sync automatically.
 
-You should then be able to run the project either on an emulator or physical device by selecting Run -> "Run App" or debug app from the Android Studio menu.
+4. You should then be able to run the project either on an emulator or physical device by selecting Run -> "Run App" or debug app from the Android Studio menu.
