@@ -1,2 +1,4 @@
-package cvc.edu.servicesolutions_tiptracker;public class TipRecordActivity {
+package cvc.edu.servicesolutions_tiptracker;
+
+public class TipRecordActivity {
 }
