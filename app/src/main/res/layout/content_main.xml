@@ -46,6 +46,24 @@
         app:layout_constraintStart_toStartOf="@+id/hours_worked"
         app:layout_constraintTop_toBottomOf="@+id/hours_worked" />
 
-    
+    <TextView
+        android:id="@+id/add_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Add Tip:"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/hourly_rate"
+        app:layout_constraintTop_toBottomOf="@+id/hours_worked_text" />
+
+    <EditText
+        android:id="@+id/add_tip_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="$5.00"
+        app:layout_constraintStart_toStartOf="@+id/hours_worked"
+        app:layout_constraintTop_toBottomOf="@+id/add_tip" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
