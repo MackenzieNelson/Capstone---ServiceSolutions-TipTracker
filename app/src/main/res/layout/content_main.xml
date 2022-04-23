@@ -18,11 +18,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/hourly_rate_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="$7.25"
         app:layout_constraintStart_toStartOf="@id/hourly_rate"
         app:layout_constraintTop_toBottomOf="@id/hourly_rate" />
+
+    <TextView
+        android:id="@+id/hours_worked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Hours Worked:"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/hourly_rate"
+        app:layout_constraintTop_toBottomOf="@+id/hourly_rate_text" />
+
+    <EditText
+        android:id="@+id/hours_worked_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="8"
+        app:layout_constraintStart_toStartOf="@+id/hours_worked"
+        app:layout_constraintTop_toBottomOf="@+id/hours_worked" />
+
+    
 
 </androidx.constraintlayout.widget.ConstraintLayout>
