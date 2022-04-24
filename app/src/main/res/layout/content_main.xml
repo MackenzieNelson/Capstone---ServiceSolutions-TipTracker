@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -9,8 +10,8 @@
         android:id="@+id/hourly_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
         android:text="Hourly Rate:"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -65,5 +66,31 @@
         android:hint="$5.00"
         app:layout_constraintStart_toStartOf="@+id/hours_worked"
         app:layout_constraintTop_toBottomOf="@+id/add_tip" />
+
+    <TextView
+        android:id="@+id/add_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Add Date:"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/hourly_rate"
+        app:layout_constraintTop_toBottomOf="@+id/add_tip_text" />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="openDatePicker"
+        android:text="JAN 01 2022"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/add_date"
+        app:layout_constraintTop_toBottomOf="@+id/add_date"
+        tools:layout_editor_absoluteX="10dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
