@@ -12,4 +12,7 @@
     <string name="title_activity_select_job">SelectJob</string>
     <string name="job_title">Job Title</string>
     <string name="job_description_text">Description</string>
+    <string name="select_job_string">Select Job</string>
+    <string name="search_jobs_string">Search Jobs</string>
+    <string name="add_job_string">Add a Job</string>
 </resources>
