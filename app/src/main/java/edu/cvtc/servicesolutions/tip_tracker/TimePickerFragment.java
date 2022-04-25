@@ -1,4 +1,4 @@
-package cvc.edu.servicesolutions_tiptracker;
+package edu.cvtc.servicesolutions.tip_tracker;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
