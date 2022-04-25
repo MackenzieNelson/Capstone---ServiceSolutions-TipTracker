@@ -11,8 +11,8 @@ import android.view.View;
 import androidx.fragment.app.DialogFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
-import cvc.edu.servicesolutions_tiptracker.R;
-import cvc.edu.servicesolutions_tiptracker.databinding.ActivityMainBinding;
+import edu.cvtc.servicesolutions.tip_tracker.R;
+import edu.cvtc.servicesolutions.tip_tracker.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;

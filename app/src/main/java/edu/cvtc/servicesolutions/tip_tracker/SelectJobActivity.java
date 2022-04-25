@@ -19,8 +19,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import cvc.edu.servicesolutions_tiptracker.R;
-import cvc.edu.servicesolutions_tiptracker.databinding.ActivitySelectJobBinding;
+import edu.cvtc.servicesolutions.tip_tracker.R;
+import edu.cvtc.servicesolutions.tip_tracker.databinding.ActivitySelectJobBinding;
 
 public class SelectJobActivity extends AppCompatActivity {
 
