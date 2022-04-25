@@ -30,6 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/job_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/job_description_text"
