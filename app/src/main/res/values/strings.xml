@@ -15,4 +15,6 @@
     <string name="select_job_string">Select Job</string>
     <string name="search_jobs_string">Search Jobs</string>
     <string name="add_job_string">Add a Job</string>
+    <string name="job_description">Job Description</string>
+    <string name="cancel_text">Cancel</string>
 </resources>

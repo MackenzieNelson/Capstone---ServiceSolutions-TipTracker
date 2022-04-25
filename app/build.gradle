@@ -6,7 +6,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "cvc.edu.servicesolutions_tiptracker"
+        applicationId "edu.cvtc.servicesolutions.tip_tracker"
         minSdk 26
         targetSdk 32
         versionCode 1
