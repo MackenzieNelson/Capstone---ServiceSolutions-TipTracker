@@ -114,7 +114,4 @@ public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.
             });
             }
         }
-    }
-
-
 }
