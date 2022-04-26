@@ -20,5 +20,6 @@ public class JobsDataWorker {
     }
 
     public void insertJobs() {
+        insertJob("Server/Bartender", "Typical FOH Duties");
     }
 }

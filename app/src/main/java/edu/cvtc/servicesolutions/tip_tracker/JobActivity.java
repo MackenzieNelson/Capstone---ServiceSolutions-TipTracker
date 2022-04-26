@@ -301,7 +301,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
                 deleteJobFromDatabase();
             } else {
                 // Put the original values on the screen
-                storePreviousJobValues();;
+                storePreviousJobValues();
             }
         } else {
             // save the data when leaving
