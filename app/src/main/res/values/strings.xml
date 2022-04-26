@@ -17,4 +17,10 @@
     <string name="add_job_string">Add a Job</string>
     <string name="job_description">Job Description</string>
     <string name="cancel_text">Cancel</string>
+=======
+
+    <!-- Strings used for navigation drawer -->
+    <string name="menu_Open">Open</string>
+    <string name="menu_Close">Close</string>
+>>>>>>> Stashed changes
 </resources>
