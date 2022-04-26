@@ -17,6 +17,8 @@
             android:exported="true"
             android:label="@string/title_activity_select_job"
             android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar">
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

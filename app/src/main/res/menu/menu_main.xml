@@ -2,9 +2,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="cvc.edu.servicesolutions_tiptracker.edu.cvtc.servicesolutions.tip_tracker.MainActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+
+   <group android:checkableBehavior="single">
+       <item
+           android:id="@+id/nav_home"
+           android:title="Home"
+           android:icon="@drawable/ic_home"/>
+   </group>
+
+    <group android:checkableBehavior="single">
+        <item android:title="Tip Information">
+            <menu>
+                <group>
+                    <item
+                        android:id="@+id/nav_track_tips"
+                        android:title="Track Tips"
+                        android:icon="@drawable/ic_home"/>
+                    <item
+                        android:id="@+id/nav_record_tips"
+                        android:title="Tip Record"
+                        android:icon="@drawable/ic_home"/>
+                </group>
+            </menu>
+        </item>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:title="Budgeting">
+            <menu>
+                <group>
+                    <item
+                        android:id="@+id/nav_budget"
+                        android:title="Budget"
+                        android:icon="@drawable/ic_home"/>
+                    <item
+                        android:id="@+id/nav_income_calc"
+                        android:title="Calculate Income"
+                        android:icon="@drawable/ic_home"/>
+                </group>
+            </menu>
+        </item>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings"
+            android:icon="@drawable/ic_home"/>
+    </group>
 </menu>
