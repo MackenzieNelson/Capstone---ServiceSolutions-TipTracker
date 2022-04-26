@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="Hourly Rate:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,10 +22,10 @@
         android:id="@+id/hourly_rate_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="30dp"
         android:hint="$7.25"
-        app:layout_constraintStart_toStartOf="@id/hourly_rate"
-        app:layout_constraintTop_toBottomOf="@id/hourly_rate" />
+        app:layout_constraintStart_toEndOf="@id/hourly_rate"
+        app:layout_constraintTop_toTopOf="@id/hourly_rate" />
 
     <TextView
         android:id="@+id/hours_worked"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Hours Worked:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/hourly_rate"
         app:layout_constraintTop_toBottomOf="@+id/hourly_rate_text" />
@@ -42,7 +42,7 @@
         android:id="@+id/start_hours_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter Start Time"
+        android:text="Start Time"
         android:onClick="showTimePickerDialog"
         app:layout_constraintStart_toStartOf="@+id/hours_worked"
         app:layout_constraintTop_toBottomOf="@+id/hours_worked"/>
@@ -51,10 +51,10 @@
         android:id="@+id/end_hours_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:text="Enter End Time"
+        android:layout_marginHorizontal="10dp"
+        android:text="End Time"
         android:onClick="showTimePickerDialog"
-        app:layout_constraintStart_toEndOf="@+id/hours_worked"
+        app:layout_constraintStart_toEndOf="@+id/start_hours_button"
         app:layout_constraintTop_toBottomOf="@+id/hours_worked"/>
 
     <Button
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Add Date:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/hourly_rate"
         app:layout_constraintTop_toBottomOf="@+id/submit_hours_button" />
@@ -87,7 +87,7 @@
         android:onClick="openDatePicker"
         android:text="JAN 01 2022"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/submit_hours_button"
         app:layout_constraintTop_toBottomOf="@+id/add_date"
         tools:layout_editor_absoluteX="10dp" />
@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Add Tip Amount Cash:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/hourly_rate"
         app:layout_constraintTop_toBottomOf="@+id/datePickerButton" />
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Add Tip Amount Credit Cards:"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/hourly_rate"
         app:layout_constraintTop_toBottomOf="@+id/add_tip_text" />
@@ -139,6 +139,6 @@
         android:text="Submit Tip"
         android:onClick="showTimePickerDialog"
         app:layout_constraintStart_toStartOf="@+id/datePickerButton"
-        app:layout_constraintTop_toBottomOf="@+id/hours_worked"/>
+        app:layout_constraintTop_toBottomOf="@+id/add_tip_credit_text"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
