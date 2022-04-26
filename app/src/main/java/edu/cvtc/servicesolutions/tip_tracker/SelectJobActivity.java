@@ -1,5 +1,6 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -38,10 +39,13 @@ public class SelectJobActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(SelectJobActivity.this, "Add a Job Toolbar Image Clicked", Toast.LENGTH_SHORT).show();
-                    }
+                        startAddJob();
                 }
-        );
+        });
+    }
 
+    private void startAddJob() {
+        Intent intent = new Intent(SelectJobActivity.this, JobActivity.class);
+        startActivity(intent);
     }
 }
