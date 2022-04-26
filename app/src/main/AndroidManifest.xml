@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cvc.edu.servicesolutions_tiptracker">
+    package="edu.cvtc.servicesolutions.tip_tracker">
 
     <application
         android:allowBackup="true"
@@ -10,15 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceSolutionsTipTracker">
         <activity
-            android:name=".MainActivity"
+            android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivity"
+            android:exported="false" />
+        <activity
+            android:name="edu.cvtc.servicesolutions.tip_tracker.SelectJobActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:label="@string/title_activity_select_job"
             android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="edu.cvtc.servicesolutions.tip_tracker.IncomeActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar">
+
         </activity>
     </application>
 
