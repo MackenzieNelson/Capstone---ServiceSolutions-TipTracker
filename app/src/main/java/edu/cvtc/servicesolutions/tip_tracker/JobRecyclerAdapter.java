@@ -112,6 +112,6 @@ public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.
                     mContext.startActivity(intent);
                 }
             });
+            }
         }
-    }
 }
