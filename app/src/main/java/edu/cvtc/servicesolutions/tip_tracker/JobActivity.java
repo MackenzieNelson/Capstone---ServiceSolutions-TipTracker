@@ -72,7 +72,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
         mTextJobTitle = findViewById(R.id.text_job_title);
         mTextJobDescription = findViewById(R.id.text_job_description);
 
-        // If it is not a new course, load the course into the layout
+        // If it is not a new job, load the job into the layout
         if (!mIsNewJob) {
             LoaderManager.getInstance(this).initLoader(LOADER_JOBS, null, this);
         }
@@ -91,7 +91,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
     }
 
     private void saveOriginalJobValues() {
-        // Only save values if you do not have a new course
+        // Only save values if you do not have a new job
         if (!mIsNewJob) {
             mOriginalJobTitle = mJob.getmJobTitle();
             mOriginalJobDescription = mJob.getmJobDescription();
@@ -111,7 +111,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
             // Get the job id passed into the intent
             mJobID = intent.getIntExtra(JOB_ID, ID_NOT_SET);
 
-            // If the course id is not set, create a new course
+            // If the job id is not set, create a new job
             mIsNewJob = mJobID == ID_NOT_SET;
             if (mIsNewJob) {
                 createNewJob();
@@ -227,6 +227,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
             mIsCancelling = true;
             finish();
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -296,7 +297,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
         super.onPause();
         // Did the user cancel?
         if (mIsCancelling) {
-            // Is this a new course?
+            // Is this a new job?
             if (mIsNewJob) {
                 deleteJobFromDatabase();
             } else {

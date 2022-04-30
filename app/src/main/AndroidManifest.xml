@@ -11,7 +11,8 @@
         android:theme="@style/Theme.ServiceSolutionsTipTracker">
         <activity
             android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivity"
-            android:exported="false" />
+            android:label="View Job"
+            android:parentActivityName=".JobActivityMain" />
         <activity
             android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivityMain"
             android:exported="true"
