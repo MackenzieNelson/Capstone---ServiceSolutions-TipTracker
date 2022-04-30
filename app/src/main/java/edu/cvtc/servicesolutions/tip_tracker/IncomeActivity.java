@@ -2,12 +2,17 @@ package edu.cvtc.servicesolutions.tip_tracker;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +25,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,10 +38,36 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
 import java.util.Calendar;
 
-public class IncomeActivity extends AppCompatActivity {
+public class IncomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    //Constants
+    public static final String ORIGINAL_HOURLY_RATE = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_HOURLY_RATE";
+    public static final String ORIGINAL_HOURS_WORKED = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_HOURS_WORKED";
+    public static final String ORIGINAL_CASH_TIP = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_CASH_TIP";
+    public static final String ORIGINAL_CREDIT_TIP = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_CREDIT_TIP";
+    public static final String ORIGINAL_DATE = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_DATE";
+    public static final int ID_NOT_SET = -1;
+    public static final int LOADER_GAMES = 0;
+
+    //Member Variables
+    private boolean mIsNewIncome;
+    private String originalHoursWorked;
+    private String originalHourlyRate;
+    private String originalCashTip;
+    private String originalCreditTip;
+    private String originalDate;
+
+    //Member objects
+    private EditText hourlyRateText;
+    private EditText hoursWorkedText;
+    private EditText cashTipText;
+    private EditText creditTipText;
+    private JobOpenHelper mDbOpenHelper;
+    private Cursor mCursor;
 
     // Calendar to pick date to add tips
     private DatePickerDialog datePickerDialog;
@@ -50,6 +83,24 @@ public class IncomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mDbOpenHelper = new JobOpenHelper(this);
+        readDisplayStateValues();
+        // If the bundle is null, save the values. Otherwise restore the original values.
+        if (savedInstanceState == null) {
+            saveOriginalIncomeValues();
+        } else {
+            restoreOriginalIncomeValues(savedInstanceState);
+        }
+        hourlyRateText = findViewById(R.id.hourly_rate_text);
+        hoursWorkedText = findViewById(R.id.hours_worked_text);
+        cashTipText = findViewById(R.id.add_cash_tip_text);
+        creditTipText = findViewById(R.id.add_credit_tip_text);
+
+        // If it is not a new income, load the income data into the layout
+        if (!mIsNewIncome) {
+            LoaderManager.getInstance(this).initLoader(LOADER_GAMES, null, this);
+        }
 
         setContentView(R.layout.content_main);
         intDatePicker();
@@ -115,6 +166,51 @@ public class IncomeActivity extends AppCompatActivity {
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
+    private void restoreOriginalIncomeValues(Bundle savedInstanceState) {
+        // Get the original values from the savedInstanceState
+        originalHoursWorked = savedInstanceState.getString(ORIGINAL_HOURS_WORKED);
+        originalHourlyRate = savedInstanceState.getString(ORIGINAL_HOURLY_RATE);
+        originalCashTip = savedInstanceState.getString(ORIGINAL_CASH_TIP);
+        originalCreditTip = savedInstanceState.getString(ORIGINAL_CREDIT_TIP);
+        originalDate = savedInstanceState.getString(ORIGINAL_DATE);
+
+    }
+
+    private void saveOriginalIncomeValues() {
+        // Only save values if you do not have a new game
+        if (!mIsNewIncome) {
+            originalHoursWorked = mGame.getTitle();
+            originalHourlyRate = mGame.getPlatform();
+            originalCashTip =
+                    originalCreditTip
+        }
+    }
+
+    private void readDisplayStateValues() {
+        // Get the intent passed into the activity
+        Intent intent = getIntent();
+        // Get the income id passed into the intent
+        mGameId = intent.getIntExtra(GAME_ID, ID_NOT_SET);
+        // If the game id is not set, create a new game
+        mIsNewGame = mGameId == ID_NOT_SET;
+        if (mIsNewIncome) {
+            createNewGame();
+        }
+    }
+
+    private void createNewGame() {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_GAME_TITLE, "");
+        values.put(COLUMN_GAME_PLATFORM, "");
+        values.put(COLUMN_GAME_RATING, "");
+        values.put(COLUMN_GAME_CATEGORY, "");
+        values.put(COLUMN_GAME_PLAYERS, "");
+
+        SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
+
+        mGameId = (int)db.insert(JobEntry.TABLE_NAME, null, values);
     }
 
     private void intDatePicker() {
@@ -189,5 +285,21 @@ public class IncomeActivity extends AppCompatActivity {
 
     public void openDatePicker(View view) {
         datePickerDialog.show();
+    }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
     }
 }

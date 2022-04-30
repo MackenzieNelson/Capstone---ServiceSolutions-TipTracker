@@ -3,11 +3,22 @@ package edu.cvtc.servicesolutions.tip_tracker;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
+
 public class JobInfo implements Parcelable {
     // Member Attributes
     private String mJobTitle;
     private String mJobDescription;
     private int mId;
+
+    private double hourlyWage;
+    private double hoursWorked;
+    private double cashTip;
+    private double creditTip;
+    private Date date;
+
+    private String expenseName;
+    private double expenseAmount;
 
     public JobInfo(String jobTitle, String jobDescription) {
         mJobTitle = jobTitle;
@@ -41,6 +52,63 @@ public class JobInfo implements Parcelable {
     public void setmJobDescription(String mJobDescription) {
         this.mJobDescription = mJobDescription;
     }
+
+    public double getHourlyWage() {
+        return hourlyWage;
+    }
+
+    public void setHourlyWage(double hourlyWage) {
+        this.hourlyWage = hourlyWage;
+    }
+
+    public double getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(double hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    public double getCashTip() {
+        return cashTip;
+    }
+
+    public void setCashTip(double cashTip) {
+        this.cashTip = cashTip;
+    }
+
+    public double getCreditTip() {
+        return creditTip;
+    }
+
+    public void setCreditTip(double creditTip) {
+        this.creditTip = creditTip;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getExpenseName() {
+        return expenseName;
+    }
+
+    public void setExpenseName(String expenseName) {
+        this.expenseName = expenseName;
+    }
+
+    public double getExpenseAmount() {
+        return expenseAmount;
+    }
+
+    public void setExpenseAmount(double expenseAmount) {
+        this.expenseAmount = expenseAmount;
+    }
+
 
     private String getCompareKey() { return mJobTitle + "|" + mJobDescription; }
 
