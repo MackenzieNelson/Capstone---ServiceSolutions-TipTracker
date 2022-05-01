@@ -1,5 +1,6 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import static java.lang.Double.parseDouble;
 import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS;
 import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS;
 import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE;
@@ -45,19 +46,22 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
 
 public class IncomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     //Constants
-    public static final double ORIGINAL_HOURLY_RATE = 0.0;
-    public static final double ORIGINAL_HOURS_WORKED =  0.0;
-    public static final double ORIGINAL_CASH_TIP = 0.0;
-    public static final double ORIGINAL_CREDIT_TIP = 0.0;
-    public static final Date ORIGINAL_DATE = null;
+    public static final String INCOME_ID = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_INCOME_ID";
+    public static final String ORIGINAL_HOURLY_RATE = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_HOURLY_RATE";
+    public static final String ORIGINAL_HOURS_WORKED =  "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_HOURS_WORKED";
+    public static final String ORIGINAL_CASH_TIP = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_CASH_TIP";
+    public static final String ORIGINAL_CREDIT_TIP = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_CREDIT_TIP";
+    public static final String ORIGINAL_DATE = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_DATE";
     public static final int ID_NOT_SET = -1;
     public static final int LOADER_INCOME = 0;
 
@@ -67,10 +71,10 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     private boolean mIsNewIncome;
     private int mIncomeId;
     private double originalHoursWorked;
-    private String originalHourlyRate;
-    private String originalCashTip;
-    private String originalCreditTip;
-    private String originalDate;
+    private double originalHourlyRate;
+    private double originalCashTip;
+    private double originalCreditTip;
+    private Date originalDate;
 
     //Member objects
     private EditText hourlyRateText;
@@ -101,7 +105,11 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         if (savedInstanceState == null) {
             saveOriginalIncomeValues();
         } else {
-            restoreOriginalIncomeValues(savedInstanceState);
+            try {
+                restoreOriginalIncomeValues(savedInstanceState);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         hourlyRateText = findViewById(R.id.hourly_rate_text);
         hoursWorkedText = findViewById(R.id.hours_worked_text);
@@ -179,13 +187,13 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
-    private void restoreOriginalIncomeValues(Bundle savedInstanceState) {
+    private void restoreOriginalIncomeValues(Bundle savedInstanceState) throws ParseException {
         // Get the original values from the savedInstanceState
-        originalHoursWorked = savedInstanceState.getDouble(ORIGINAL_HOURS_WORKED);
-        originalHourlyRate = savedInstanceState.getDouble(ORIGINAL_HOURLY_RATE);
-        originalCashTip = savedInstanceState.getDouble(ORIGINAL_CASH_TIP);
-        originalCreditTip = savedInstanceState.getDouble(ORIGINAL_CREDIT_TIP);
-        originalDate = savedInstanceState.getSerializable(ORIGINAL_DATE);
+        originalHoursWorked = parseDouble(savedInstanceState.getString(ORIGINAL_HOURS_WORKED));
+        originalHourlyRate = parseDouble(savedInstanceState.getString(ORIGINAL_HOURLY_RATE));
+        originalCashTip = parseDouble(savedInstanceState.getString(ORIGINAL_CASH_TIP));
+        originalCreditTip = parseDouble(savedInstanceState.getString(ORIGINAL_CREDIT_TIP));
+        originalDate = new SimpleDateFormat("dd/MM/yyyy").parse(savedInstanceState.getString(ORIGINAL_DATE));
 
     }
 
