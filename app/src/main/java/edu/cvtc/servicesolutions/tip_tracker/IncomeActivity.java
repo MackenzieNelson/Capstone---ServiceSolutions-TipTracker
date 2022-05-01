@@ -66,7 +66,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     //Member Variables
     private boolean mIsNewIncome;
     private int mIncomeId;
-    private String originalHoursWorked;
+    private double originalHoursWorked;
     private String originalHourlyRate;
     private String originalCashTip;
     private String originalCreditTip;
