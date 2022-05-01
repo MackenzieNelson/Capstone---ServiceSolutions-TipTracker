@@ -11,12 +11,6 @@ public class JobInfo implements Parcelable {
     private String mJobDescription;
     private int mId;
 
-    private double hourlyWage;
-    private double hoursWorked;
-    private double cashTip;
-    private double creditTip;
-    private Date date;
-
     private String expenseName;
     private double expenseAmount;
 
@@ -53,45 +47,7 @@ public class JobInfo implements Parcelable {
         this.mJobDescription = mJobDescription;
     }
 
-    public double getHourlyWage() {
-        return hourlyWage;
-    }
 
-    public void setHourlyWage(double hourlyWage) {
-        this.hourlyWage = hourlyWage;
-    }
-
-    public double getHoursWorked() {
-        return hoursWorked;
-    }
-
-    public void setHoursWorked(double hoursWorked) {
-        this.hoursWorked = hoursWorked;
-    }
-
-    public double getCashTip() {
-        return cashTip;
-    }
-
-    public void setCashTip(double cashTip) {
-        this.cashTip = cashTip;
-    }
-
-    public double getCreditTip() {
-        return creditTip;
-    }
-
-    public void setCreditTip(double creditTip) {
-        this.creditTip = creditTip;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public String getExpenseName() {
         return expenseName;

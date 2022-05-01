@@ -1,5 +1,10 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE;
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
@@ -42,6 +47,8 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
+import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
+
 public class IncomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     //Constants
@@ -55,6 +62,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     //Member Variables
     private boolean mIsNewIncome;
+    private int mIncomeId;
     private String originalHoursWorked;
     private String originalHourlyRate;
     private String originalCashTip;
@@ -192,25 +200,25 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         // Get the intent passed into the activity
         Intent intent = getIntent();
         // Get the income id passed into the intent
-        mGameId = intent.getIntExtra(GAME_ID, ID_NOT_SET);
+        mIncomeId = intent.getIntExtra(GAME_ID, ID_NOT_SET);
         // If the game id is not set, create a new game
-        mIsNewGame = mGameId == ID_NOT_SET;
+        mIsNewIncome = mIncomeId == ID_NOT_SET;
         if (mIsNewIncome) {
-            createNewGame();
+            createNewIncome();
         }
     }
 
-    private void createNewGame() {
+    private void createNewIncome() {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_GAME_TITLE, "");
-        values.put(COLUMN_GAME_PLATFORM, "");
-        values.put(COLUMN_GAME_RATING, "");
-        values.put(COLUMN_GAME_CATEGORY, "");
-        values.put(COLUMN_GAME_PLAYERS, "");
+        values.put(COLUMN_HOURLY_RATE, "");
+        values.put(COLUMN_HOURS_WORKED, "");
+        values.put(COLUMN_CASH_TIPS, "");
+        values.put(COLUMN_CREDIT_TIPS, "");
+
 
         SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
-        mGameId = (int)db.insert(JobEntry.TABLE_NAME, null, values);
+        mIncomeId = (int)db.insert(JobInfoEntry.TABLE_NAME, null, values);
     }
 
     private void intDatePicker() {
