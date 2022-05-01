@@ -190,7 +190,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     private void saveOriginalIncomeValues() {
-        // Only save values if you do not have a new game
+        // Only save values if you do not have a new income
         if (!mIsNewIncome) {
             originalHoursWorked = incomeInfo.getHoursWorked();
             originalHourlyRate = incomeInfo.getHourlyWage();
@@ -204,8 +204,8 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         // Get the intent passed into the activity
         Intent intent = getIntent();
         // Get the income id passed into the intent
-        mIncomeId = intent.getIntExtra(GAME_ID, ID_NOT_SET);
-        // If the Income id is not set, create a new game
+        mIncomeId = intent.getIntExtra(INCOME_ID, ID_NOT_SET);
+        // If the Income id is not set, create a new income
         mIsNewIncome = mIncomeId == ID_NOT_SET;
         if (mIsNewIncome) {
             createNewIncome();
