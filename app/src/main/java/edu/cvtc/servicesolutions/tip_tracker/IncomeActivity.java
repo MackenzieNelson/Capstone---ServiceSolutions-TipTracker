@@ -46,19 +46,22 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
 
 public class IncomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     //Constants
-    public static final String ORIGINAL_HOURLY_RATE = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_HOURLY_RATE";
-    public static final String ORIGINAL_HOURS_WORKED = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_HOURS_WORKED";
-    public static final String ORIGINAL_CASH_TIP = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_CASH_TIP";
-    public static final String ORIGINAL_CREDIT_TIP = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_CREDIT_TIP";
-    public static final String ORIGINAL_DATE = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_DATE";
+    public static final double ORIGINAL_HOURLY_RATE = 0.0;
+    public static final double ORIGINAL_HOURS_WORKED =  0.0;
+    public static final double ORIGINAL_CASH_TIP = 0.0;
+    public static final double ORIGINAL_CREDIT_TIP = 0.0;
+    public static final Date ORIGINAL_DATE = null;
     public static final int ID_NOT_SET = -1;
-    public static final int LOADER_GAMES = 0;
+    public static final int LOADER_INCOME = 0;
+
+    private IncomeInfo incomeInfo = new IncomeInfo(0, 0, 0, 0, 0, null);
 
     //Member Variables
     private boolean mIsNewIncome;
@@ -107,7 +110,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
         // If it is not a new income, load the income data into the layout
         if (!mIsNewIncome) {
-            LoaderManager.getInstance(this).initLoader(LOADER_GAMES, null, this);
+            LoaderManager.getInstance(this).initLoader(LOADER_INCOME, null, this);
         }
 
         setContentView(R.layout.content_main);
@@ -178,21 +181,22 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     private void restoreOriginalIncomeValues(Bundle savedInstanceState) {
         // Get the original values from the savedInstanceState
-        originalHoursWorked = savedInstanceState.getString(ORIGINAL_HOURS_WORKED);
-        originalHourlyRate = savedInstanceState.getString(ORIGINAL_HOURLY_RATE);
-        originalCashTip = savedInstanceState.getString(ORIGINAL_CASH_TIP);
-        originalCreditTip = savedInstanceState.getString(ORIGINAL_CREDIT_TIP);
-        originalDate = savedInstanceState.getString(ORIGINAL_DATE);
+        originalHoursWorked = savedInstanceState.getDouble(ORIGINAL_HOURS_WORKED);
+        originalHourlyRate = savedInstanceState.getDouble(ORIGINAL_HOURLY_RATE);
+        originalCashTip = savedInstanceState.getDouble(ORIGINAL_CASH_TIP);
+        originalCreditTip = savedInstanceState.getDouble(ORIGINAL_CREDIT_TIP);
+        originalDate = savedInstanceState.getSerializable(ORIGINAL_DATE);
 
     }
 
     private void saveOriginalIncomeValues() {
         // Only save values if you do not have a new game
         if (!mIsNewIncome) {
-            originalHoursWorked = mGame.getTitle();
-            originalHourlyRate = mGame.getPlatform();
-            originalCashTip =
-                    originalCreditTip
+            originalHoursWorked = incomeInfo.getHoursWorked();
+            originalHourlyRate = incomeInfo.getHourlyWage();
+            originalCashTip = incomeInfo.getCashTip();
+            originalCreditTip = incomeInfo.getCreditTip();
+            originalDate = incomeInfo.getDate();
         }
     }
 
@@ -201,7 +205,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         Intent intent = getIntent();
         // Get the income id passed into the intent
         mIncomeId = intent.getIntExtra(GAME_ID, ID_NOT_SET);
-        // If the game id is not set, create a new game
+        // If the Income id is not set, create a new game
         mIsNewIncome = mIncomeId == ID_NOT_SET;
         if (mIsNewIncome) {
             createNewIncome();

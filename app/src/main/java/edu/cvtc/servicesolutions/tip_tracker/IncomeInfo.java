@@ -22,15 +22,14 @@ public class IncomeInfo implements Parcelable {
         iDate = date;
     }
 
-    protected Game(Parcel parcel) {
+    protected IncomeInfo(Parcel parcel) {
         iHourlyWage = parcel.readDouble();
         iHoursWorked = parcel.readDouble();
         iCashTip = parcel.readDouble();
         iCreditTip = parcel.readDouble();
-        iDate = parcel.read();
     }
 
-    private IncomeInfo(int id, double hourlyWage, double hoursWorked, double cashTip, double creditTip, Date date) {
+    public IncomeInfo(int id, double hourlyWage, double hoursWorked, double cashTip, double creditTip, Date date) {
         iId = id;
         iHourlyWage = hourlyWage;
         iHoursWorked = hoursWorked;
@@ -90,7 +89,6 @@ public class IncomeInfo implements Parcelable {
         parcel.writeDouble(iHoursWorked);
         parcel.writeDouble(iCashTip);
         parcel.writeDouble(iCreditTip);
-        parcel.write (iDate);
     }
 
     public static final Creator<IncomeInfo> CREATOR = new Creator<IncomeInfo>() {
