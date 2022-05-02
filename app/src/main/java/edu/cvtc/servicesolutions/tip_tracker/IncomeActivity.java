@@ -256,7 +256,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
         SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
-        mIncomeId = (int)db.insert(JobInfoEntry.TABLE_NAME, null, values);
+        mIncomeId = (int)db.insert(JobInfoEntry.TABLE_INCOME, null, values);
     }
 
     private void saveIncomeToDatabase(String hoursWorked, String hourlyRate, String creditTips, String cashTips, String date) {
@@ -400,18 +400,18 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
         CursorLoader loader = null;
         if (id == LOADER_INCOME) {
-            loader = createLoaderGames();
+            loader = createLoaderIncome();
         }
         return loader;
     }
 
-    private CursorLoader createLoaderGames() {
+    private CursorLoader createLoaderIncome() {
         return new CursorLoader(this) {
             @Override
             public Cursor loadInBackground() {
                 // Open a connection to the database
                 SQLiteDatabase db = mDbOpenHelper.getReadableDatabase();
-                // Build the selection criteria. In this case, you want to set the ID of the game to the passed-in game id from the Intent.
+                // Build the selection criteria. In this case, you want to set the ID of the Income to the passed-in game id from the Intent.
                 String selection = JobsDatabaseContract.JobInfoEntry._ID + " = ?";
                 String[] selectionArgs = {Integer.toString(mIncomeId)};
                 // Create a list of the columns you are pulling from the database.
