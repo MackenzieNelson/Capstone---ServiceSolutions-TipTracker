@@ -107,7 +107,7 @@ public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext, JobActivity.class);
+                    Intent intent = new Intent(mContext, IncomeActivity.class);
                     intent.putExtra(JobActivity.JOB_ID, mId);
                     mContext.startActivity(intent);
                 }

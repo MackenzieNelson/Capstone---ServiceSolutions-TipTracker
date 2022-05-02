@@ -74,6 +74,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
 
         // If it is not a new job, load the job into the layout
         if (!mIsNewJob) {
+
             LoaderManager.getInstance(this).initLoader(LOADER_JOBS, null, this);
         }
     }
