@@ -3,6 +3,7 @@ package edu.cvtc.servicesolutions.tip_tracker;
 import static java.lang.Double.parseDouble;
 import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS;
 import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_DATE;
 import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE;
 import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED;
 
@@ -33,6 +34,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -70,6 +72,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     //Member Variables
     private boolean mIsNewIncome;
+    private boolean mIsCancelling;
     private int mIncomeId;
     private double originalHoursWorked;
     private double originalHourlyRate;
@@ -82,6 +85,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     private EditText hoursWorkedText;
     private EditText cashTipText;
     private EditText creditTipText;
+    private Button submitButton;
     private JobOpenHelper mDbOpenHelper;
     private Cursor mCursor;
 
@@ -94,8 +98,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     NavigationView navigationView;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,57 +176,8 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                     return true;
                 }
             });
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
-        Toolbar toolbar = drawerLayout.findViewById(R.id.toolBar);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        // Add arrow to menu to close
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // When user clicks on item get callback
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        Log.i("MENU_DRAWER_TAG", "Home item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_track_tips:
-                        Log.i("MENU_DRAWER_TAG", "Track Tip item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_record_tips:
-                        Log.i("MENU_DRAWER_TAG", "Record Tip item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_budget:
-                        Log.i("MENU_DRAWER_TAG", "Budget item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_income_calc:
-                        Log.i("MENU_DRAWER_TAG", "Income Calculation item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_settings:
-                        Log.i("MENU_DRAWER_TAG", "Settings item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                }
-                return true;
-            }
-        });
-
-
         }
     }
-
    @Override
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -294,17 +247,17 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         mIncomeId = (int)db.insert(JobInfoEntry.TABLE_NAME, null, values);
     }
 
-    private void saveIncomeToDatabase(String gameTitle, String gamePlatform, String gameRating, String gameCategory, String gamePlayers) {
+    private void saveIncomeToDatabase(String hoursWorked, String hourlyRate, String creditTips, String cashTips, String date) {
         //Create selection criteria
-        String selection = GameEntry._ID + " = ?";
-        String[] selectionArgs = {Integer.toString(mGameId)};
+        String selection = JobInfoEntry._ID + " = ?";
+        String[] selectionArgs = {Integer.toString(mIncomeId)};
 
         ContentValues values = new ContentValues();
-        values.put(GameEntry.COLUMN_GAME_TITLE, gameTitle);
-        values.put(GameEntry.COLUMN_GAME_PLATFORM, gamePlatform);
-        values.put(COLUMN_GAME_RATING, gameRating);
-        values.put(COLUMN_GAME_CATEGORY, gameCategory);
-        values.put(COLUMN_GAME_PLAYERS, gamePlayers);
+        values.put(COLUMN_HOURS_WORKED, hoursWorked);
+        values.put(COLUMN_HOURLY_RATE, hourlyRate);
+        values.put(COLUMN_CASH_TIPS, cashTips);
+        values.put(COLUMN_CREDIT_TIPS, creditTips);
+        values.put(JobInfoEntry.COLUMN_DATE, date);
 
 
         AsyncTaskLoader<String> task = new AsyncTaskLoader<String>(this) {
@@ -320,6 +273,25 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         task.loadInBackground();
     }
 
+    private void deleteIncomeFromDatabase() {
+        // Create Selection Criteria
+        String selection = JobInfoEntry._ID + " = ?";
+        String[] selectionArgs = {Integer.toString(mIncomeId)};
+
+        AsyncTaskLoader<String> task = new AsyncTaskLoader<String>(this) {
+            @Nullable
+            @Override
+            public String loadInBackground() {
+                SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
+
+                //Delete method
+                db.delete(JobInfoEntry.TABLE_INCOME, selection, selectionArgs);
+                return null;
+            }
+        };
+        task.loadInBackground();
+    }
+
     private void storePreviousIncomeValues() {
         incomeInfo.setHourlyWage(originalHourlyRate);
         incomeInfo.setHoursWorked(originalHoursWorked);
@@ -329,14 +301,14 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     private void saveIncome() {
-        String gameTitle = mTextGameTitle.getText().toString();
-        String gamePlatform = mTextGamePlatform.getText().toString();
-        String gameRating = mTextGameRating.getSelectedItem().toString();
-        String gameCategory = mTextGameCategory.getSelectedItem().toString();
-        String gamePlayers = mTextGamePlayers.getSelectedItem().toString();
+        String hoursWorked = hoursWorkedText.getText().toString();
+        String hourlyRate = hourlyRateText.getText().toString();
+        String creditTip = creditTipText.getText().toString();
+        String cashTip = cashTipText.getText().toString();
+        String date = dateButton.getText().toString();
 
         // Write to the Database
-        saveIncomeToDatabase(gameTitle, gamePlatform, gameRating, gameCategory, gamePlayers);
+        saveIncomeToDatabase(hoursWorked, hourlyRate, creditTip, cashTip, date);
     }
 
     private void intDatePicker() {
@@ -414,7 +386,52 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        return null;
+        CursorLoader loader = null;
+        if (id == LOADER_INCOME) {
+            loader = createLoaderGames();
+        }
+        return loader;
+    }
+
+    private CursorLoader createLoaderGames() {
+        return new CursorLoader(this) {
+            @Override
+            public Cursor loadInBackground() {
+                // Open a connection to the database
+                SQLiteDatabase db = mDbOpenHelper.getReadableDatabase();
+                // Build the selection criteria. In this case, you want to set the ID of the game to the passed-in game id from the Intent.
+                String selection = JobsDatabaseContract.JobInfoEntry._ID + " = ?";
+                String[] selectionArgs = {Integer.toString(mIncomeId)};
+                // Create a list of the columns you are pulling from the database.
+                String[] incomeColumns = {
+                        COLUMN_HOURLY_RATE,
+                        COLUMN_HOURS_WORKED,
+                        COLUMN_CASH_TIPS,
+                        COLUMN_CREDIT_TIPS,
+                        COLUMN_DATE,
+                };
+                return db.query(JobInfoEntry.TABLE_INCOME, incomeColumns, selection, selectionArgs, null, null, null);
+            }
+        };
+    }
+
+    protected void onPause() {
+        super.onPause();
+        if (mIsCancelling) {
+            if (mIsNewIncome) {
+                deleteIncomeFromDatabase();
+            } else {
+                storePreviousIncomeValues();
+            }
+        } else {
+            saveIncome();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        mDbOpenHelper.close();
+        super.onDestroy();
     }
 
     @Override
