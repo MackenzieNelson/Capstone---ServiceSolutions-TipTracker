@@ -32,6 +32,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -128,6 +129,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         dateButton.setText(getTodaysDate());
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        setSupportActionBar(toolbar);
         if (drawerLayout != null) {
             navigationView = findViewById(R.id.navigationView);
             actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
@@ -242,6 +244,51 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
         mIncomeId = (int)db.insert(JobInfoEntry.TABLE_NAME, null, values);
+    }
+
+    private void saveIncomeToDatabase(String gameTitle, String gamePlatform, String gameRating, String gameCategory, String gamePlayers) {
+        //Create selection criteria
+        String selection = GameEntry._ID + " = ?";
+        String[] selectionArgs = {Integer.toString(mGameId)};
+
+        ContentValues values = new ContentValues();
+        values.put(GameEntry.COLUMN_GAME_TITLE, gameTitle);
+        values.put(GameEntry.COLUMN_GAME_PLATFORM, gamePlatform);
+        values.put(COLUMN_GAME_RATING, gameRating);
+        values.put(COLUMN_GAME_CATEGORY, gameCategory);
+        values.put(COLUMN_GAME_PLAYERS, gamePlayers);
+
+
+        AsyncTaskLoader<String> task = new AsyncTaskLoader<String>(this) {
+            @Nullable
+            @Override
+            public String loadInBackground() {
+
+                SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
+                db.update(JobInfoEntry.TABLE_INCOME, values, selection, selectionArgs);
+                return null;
+            }
+        };
+        task.loadInBackground();
+    }
+
+    private void storePreviousIncomeValues() {
+        incomeInfo.setHourlyWage(originalHourlyRate);
+        incomeInfo.setHoursWorked(originalHoursWorked);
+        incomeInfo.setCashTip(originalCashTip);
+        incomeInfo.setCreditTip(originalCreditTip);
+        incomeInfo.setDate(originalDate);
+    }
+
+    private void saveIncome() {
+        String gameTitle = mTextGameTitle.getText().toString();
+        String gamePlatform = mTextGamePlatform.getText().toString();
+        String gameRating = mTextGameRating.getSelectedItem().toString();
+        String gameCategory = mTextGameCategory.getSelectedItem().toString();
+        String gamePlayers = mTextGamePlayers.getSelectedItem().toString();
+
+        // Write to the Database
+        saveIncomeToDatabase(gameTitle, gamePlatform, gameRating, gameCategory, gamePlayers);
     }
 
     private void intDatePicker() {
