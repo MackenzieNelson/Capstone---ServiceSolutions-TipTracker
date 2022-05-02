@@ -97,13 +97,14 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     // Navigation drawer menu
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
 
         mDbOpenHelper = new JobOpenHelper(this);
         readDisplayStateValues();
@@ -146,7 +147,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         setSupportActionBar(toolbar);
         if (drawerLayout != null) {
             navigationView = findViewById(R.id.navigationView);
-            actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
+            actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_Open, R.string.menu_Close);
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
 
