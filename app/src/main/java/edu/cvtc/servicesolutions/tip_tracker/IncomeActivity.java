@@ -41,10 +41,11 @@ public class IncomeActivity extends AppCompatActivity {
     private Button dateButton;
 
     // Navigation drawer menu
-    DrawerLayout drawerLayout;
+/*    DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    ActionBarDrawerToggle actionBarDrawerToggle;
+    ActionBarDrawerToggle actionBarDrawerToggle;*/
+
 
 
     @Override
@@ -56,14 +57,16 @@ public class IncomeActivity extends AppCompatActivity {
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+/*        drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
+        Toolbar toolbar = drawerLayout.findViewById(R.id.toolBar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.syncState();*/
 
         // Add arrow to menu to close
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       /* setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // When user clicks on item get callback
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -98,10 +101,19 @@ public class IncomeActivity extends AppCompatActivity {
                 }
                 return true;
             }
-        });
+        });*/
 
 
     }
+
+/*    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+
+        super.onBackPressed();
+    }*/
 
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
@@ -178,14 +190,14 @@ public class IncomeActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
+/*    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public void openDatePicker(View view) {
         datePickerDialog.show();
