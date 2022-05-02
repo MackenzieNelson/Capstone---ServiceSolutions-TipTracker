@@ -10,6 +10,7 @@ import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfo
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -48,6 +49,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -85,7 +87,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     private EditText hoursWorkedText;
     private EditText cashTipText;
     private EditText creditTipText;
-    private Button submitButton;
     private JobOpenHelper mDbOpenHelper;
     private Cursor mCursor;
 
@@ -102,6 +103,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.content_main);
 
         mDbOpenHelper = new JobOpenHelper(this);
         readDisplayStateValues();
@@ -119,13 +121,23 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         hoursWorkedText = findViewById(R.id.hours_worked_text);
         cashTipText = findViewById(R.id.add_cash_tip_text);
         creditTipText = findViewById(R.id.add_credit_tip_text);
+        Button submitButton = findViewById(R.id.submit_tip_button);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View view) {
+                Context context = getApplicationContext();
+
+                Toast toast = Toast.makeText(context, "Income Recorded", Toast.LENGTH_SHORT);
+                toast.show();
+
+                saveIncome();
+            }
+        });
 
         // If it is not a new income, load the income data into the layout
         if (!mIsNewIncome) {
             LoaderManager.getInstance(this).initLoader(LOADER_INCOME, null, this);
         }
 
-        setContentView(R.layout.content_main);
         intDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
