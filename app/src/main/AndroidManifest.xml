@@ -13,7 +13,7 @@
             android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivity"
             android:exported="false" />
         <activity
-            android:name="edu.cvtc.servicesolutions.tip_tracker.SelectJobActivity"
+            android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivityMain"
             android:exported="true"
             android:label="@string/title_activity_select_job"
             android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar">

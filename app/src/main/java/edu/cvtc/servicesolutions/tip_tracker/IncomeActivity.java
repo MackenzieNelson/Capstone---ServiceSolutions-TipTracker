@@ -89,10 +89,10 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     private Button dateButton;
 
     // Navigation drawer menu
-/*    DrawerLayout drawerLayout;
+    DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    ActionBarDrawerToggle actionBarDrawerToggle;*/
+    ActionBarDrawerToggle actionBarDrawerToggle;
 
 
 
@@ -127,7 +127,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
 
-<<<<<<< HEAD
         drawerLayout = findViewById(R.id.drawer_layout);
         if (drawerLayout != null) {
             navigationView = findViewById(R.id.navigationView);
@@ -173,66 +172,17 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                     return true;
                 }
             });
-=======
-/*        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
-        Toolbar toolbar = drawerLayout.findViewById(R.id.toolBar);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();*/
-
-        // Add arrow to menu to close
-       /* setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // When user clicks on item get callback
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        Log.i("MENU_DRAWER_TAG", "Home item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_track_tips:
-                        Log.i("MENU_DRAWER_TAG", "Track Tip item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_record_tips:
-                        Log.i("MENU_DRAWER_TAG", "Record Tip item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_budget:
-                        Log.i("MENU_DRAWER_TAG", "Budget item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_income_calc:
-                        Log.i("MENU_DRAWER_TAG", "Income Calculation item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_settings:
-                        Log.i("MENU_DRAWER_TAG", "Settings item is clicked");
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                }
-                return true;
-            }
-        });*/
-
->>>>>>> ea13cc000c6a8afc40fe296c0e72c96ba736ea89
-
         }
     }
 
-/*    @Override
+    @Override
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
 
         super.onBackPressed();
-    }*/
+    }
 
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
@@ -355,14 +305,14 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         return true;
     }
 
-/*    @Override
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 
     public void openDatePicker(View view) {
         datePickerDialog.show();
