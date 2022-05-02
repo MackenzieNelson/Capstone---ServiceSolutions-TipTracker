@@ -1,13 +1,24 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import static java.lang.Double.parseDouble;
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE;
+import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +31,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,10 +44,45 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
-public class IncomeActivity extends AppCompatActivity {
+import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
+
+public class IncomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    //Constants
+    public static final String INCOME_ID = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_INCOME_ID";
+    public static final String ORIGINAL_HOURLY_RATE = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_HOURLY_RATE";
+    public static final String ORIGINAL_HOURS_WORKED =  "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_HOURS_WORKED";
+    public static final String ORIGINAL_CASH_TIP = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_CASH_TIP";
+    public static final String ORIGINAL_CREDIT_TIP = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_CREDIT_TIP";
+    public static final String ORIGINAL_DATE = "edu.cvtc.servicesolutions.tip_tracker.ORIGINAL_DATE";
+    public static final int ID_NOT_SET = -1;
+    public static final int LOADER_INCOME = 0;
+
+    private IncomeInfo incomeInfo = new IncomeInfo(0, 0, 0, 0, 0, null);
+
+    //Member Variables
+    private boolean mIsNewIncome;
+    private int mIncomeId;
+    private double originalHoursWorked;
+    private double originalHourlyRate;
+    private double originalCashTip;
+    private double originalCreditTip;
+    private Date originalDate;
+
+    //Member objects
+    private EditText hourlyRateText;
+    private EditText hoursWorkedText;
+    private EditText cashTipText;
+    private EditText creditTipText;
+    private JobOpenHelper mDbOpenHelper;
+    private Cursor mCursor;
 
     // Calendar to pick date to add tips
     private DatePickerDialog datePickerDialog;
@@ -51,6 +99,28 @@ public class IncomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mDbOpenHelper = new JobOpenHelper(this);
+        readDisplayStateValues();
+        // If the bundle is null, save the values. Otherwise restore the original values.
+        if (savedInstanceState == null) {
+            saveOriginalIncomeValues();
+        } else {
+            try {
+                restoreOriginalIncomeValues(savedInstanceState);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        hourlyRateText = findViewById(R.id.hourly_rate_text);
+        hoursWorkedText = findViewById(R.id.hours_worked_text);
+        cashTipText = findViewById(R.id.add_cash_tip_text);
+        creditTipText = findViewById(R.id.add_credit_tip_text);
+
+        // If it is not a new income, load the income data into the layout
+        if (!mIsNewIncome) {
+            LoaderManager.getInstance(this).initLoader(LOADER_INCOME, null, this);
+        }
 
         setContentView(R.layout.content_main);
         intDatePicker();
@@ -129,6 +199,52 @@ public class IncomeActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
+    private void restoreOriginalIncomeValues(Bundle savedInstanceState) throws ParseException {
+        // Get the original values from the savedInstanceState
+        originalHoursWorked = parseDouble(savedInstanceState.getString(ORIGINAL_HOURS_WORKED));
+        originalHourlyRate = parseDouble(savedInstanceState.getString(ORIGINAL_HOURLY_RATE));
+        originalCashTip = parseDouble(savedInstanceState.getString(ORIGINAL_CASH_TIP));
+        originalCreditTip = parseDouble(savedInstanceState.getString(ORIGINAL_CREDIT_TIP));
+        originalDate = new SimpleDateFormat("dd/MM/yyyy").parse(savedInstanceState.getString(ORIGINAL_DATE));
+
+    }
+
+    private void saveOriginalIncomeValues() {
+        // Only save values if you do not have a new income
+        if (!mIsNewIncome) {
+            originalHoursWorked = incomeInfo.getHoursWorked();
+            originalHourlyRate = incomeInfo.getHourlyWage();
+            originalCashTip = incomeInfo.getCashTip();
+            originalCreditTip = incomeInfo.getCreditTip();
+            originalDate = incomeInfo.getDate();
+        }
+    }
+
+    private void readDisplayStateValues() {
+        // Get the intent passed into the activity
+        Intent intent = getIntent();
+        // Get the income id passed into the intent
+        mIncomeId = intent.getIntExtra(INCOME_ID, ID_NOT_SET);
+        // If the Income id is not set, create a new income
+        mIsNewIncome = mIncomeId == ID_NOT_SET;
+        if (mIsNewIncome) {
+            createNewIncome();
+        }
+    }
+
+    private void createNewIncome() {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_HOURLY_RATE, "");
+        values.put(COLUMN_HOURS_WORKED, "");
+        values.put(COLUMN_CASH_TIPS, "");
+        values.put(COLUMN_CREDIT_TIPS, "");
+
+
+        SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
+
+        mIncomeId = (int)db.insert(JobInfoEntry.TABLE_NAME, null, values);
+    }
+
     private void intDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -201,5 +317,21 @@ public class IncomeActivity extends AppCompatActivity {
 
     public void openDatePicker(View view) {
         datePickerDialog.show();
+    }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
     }
 }

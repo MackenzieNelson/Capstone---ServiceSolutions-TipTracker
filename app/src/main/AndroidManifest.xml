@@ -10,16 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceSolutionsTipTracker">
         <activity
-            android:name=".SetttingsActivity"
+            android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivity"
             android:exported="false" />
         <activity
-            android:name=".JobMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JobActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SelectJobActivity"
+            android:name="edu.cvtc.servicesolutions.tip_tracker.SelectJobActivity"
             android:exported="true"
             android:label="@string/title_activity_select_job"
             android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar">
@@ -32,10 +26,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".IncomeActivity"
+            android:name="edu.cvtc.servicesolutions.tip_tracker.IncomeActivity"
             android:exported="false"
             android:label="@string/app_name"
-            android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar" />
+            android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

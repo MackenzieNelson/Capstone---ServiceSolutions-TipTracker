@@ -11,7 +11,7 @@ public class JobOpenHelper extends SQLiteOpenHelper {
 
     // Constants
     public static final String DATABASE_NAME = "Jobs_ServerSolutions.db";
-    public static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 1;
 
     public JobOpenHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -19,7 +19,11 @@ public class JobOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // create the three tables
         db.execSQL(JobInfoEntry.SQL_CREATE_TABLE);
+        db.execSQL(JobInfoEntry.SQL_CREATE_TABLE_EXPENSES);
+        db.execSQL(JobInfoEntry.SQL_CREATE_TABLE_INCOME);
+
         db.execSQL(JobInfoEntry.SQL_CREATE_INDEX1);
 
         JobsDataWorker worker = new JobsDataWorker(db);

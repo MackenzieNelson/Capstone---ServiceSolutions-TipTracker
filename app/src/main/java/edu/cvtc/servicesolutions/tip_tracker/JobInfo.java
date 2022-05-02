@@ -3,11 +3,16 @@ package edu.cvtc.servicesolutions.tip_tracker;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
+
 public class JobInfo implements Parcelable {
     // Member Attributes
     private String mJobTitle;
     private String mJobDescription;
     private int mId;
+
+    private String expenseName;
+    private double expenseAmount;
 
     public JobInfo(String jobTitle, String jobDescription) {
         mJobTitle = jobTitle;
@@ -41,6 +46,25 @@ public class JobInfo implements Parcelable {
     public void setmJobDescription(String mJobDescription) {
         this.mJobDescription = mJobDescription;
     }
+
+
+
+    public String getExpenseName() {
+        return expenseName;
+    }
+
+    public void setExpenseName(String expenseName) {
+        this.expenseName = expenseName;
+    }
+
+    public double getExpenseAmount() {
+        return expenseAmount;
+    }
+
+    public void setExpenseAmount(double expenseAmount) {
+        this.expenseAmount = expenseAmount;
+    }
+
 
     private String getCompareKey() { return mJobTitle + "|" + mJobDescription; }
 

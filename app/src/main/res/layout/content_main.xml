@@ -53,10 +53,20 @@
         app:layout_constraintStart_toStartOf="@+id/hourly_rate"
         app:layout_constraintTop_toBottomOf="@+id/hourly_rate_text" />
 
+    <EditText
+        android:id="@+id/hours_worked_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:hint="8"
+        app:layout_constraintStart_toEndOf="@id/hours_worked"
+        app:layout_constraintTop_toTopOf="@id/hours_worked" />
+
     <Button
         android:id="@+id/start_hours_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:text="Start Time"
         android:onClick="showTimePickerDialog"
         app:layout_constraintStart_toStartOf="@+id/hours_worked"
@@ -67,6 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
         android:text="End Time"
         android:onClick="showTimePickerDialog"
         app:layout_constraintStart_toEndOf="@+id/start_hours_button"
@@ -119,7 +130,7 @@
         app:layout_constraintTop_toBottomOf="@+id/datePickerButton" />
 
     <EditText
-        android:id="@+id/add_tip_text"
+        android:id="@+id/add_cash_tip_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -136,10 +147,10 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/hourly_rate"
-        app:layout_constraintTop_toBottomOf="@+id/add_tip_text" />
+        app:layout_constraintTop_toBottomOf="@+id/add_cash_tip_text" />
 
     <EditText
-        android:id="@+id/add_tip_credit_text"
+        android:id="@+id/add_credit_tip_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -154,6 +165,6 @@
         android:text="Submit Tip"
         android:onClick="showTimePickerDialog"
         app:layout_constraintStart_toStartOf="@+id/datePickerButton"
-        app:layout_constraintTop_toBottomOf="@+id/add_tip_credit_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/add_credit_tip_text"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
