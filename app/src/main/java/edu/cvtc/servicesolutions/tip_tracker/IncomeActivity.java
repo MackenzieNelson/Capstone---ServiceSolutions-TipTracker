@@ -150,7 +150,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
 
-
             // Add arrow to menu to close
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -253,7 +252,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         values.put(COLUMN_CASH_TIPS, "");
         values.put(COLUMN_CREDIT_TIPS, "");
 
-
         SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
         mIncomeId = (int)db.insert(JobInfoEntry.TABLE_INCOME, null, values);
@@ -270,7 +268,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         values.put(COLUMN_CASH_TIPS, cashTips);
         values.put(COLUMN_CREDIT_TIPS, creditTips);
         values.put(JobInfoEntry.COLUMN_DATE, date);
-
 
         AsyncTaskLoader<String> task = new AsyncTaskLoader<String>(this) {
             @Nullable
