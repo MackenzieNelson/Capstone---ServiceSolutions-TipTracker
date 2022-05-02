@@ -17,10 +17,17 @@
     <string name="add_job_string">Add a Job</string>
     <string name="job_description">Job Description</string>
     <string name="cancel_text">Cancel</string>
-=======
 
     <!-- Strings used for navigation drawer -->
     <string name="menu_Open">Open</string>
     <string name="menu_Close">Close</string>
->>>>>>> Stashed changes
+
+
+    <string name="finished_work">Just finished work?</string>
+    <string name="log_income">Log Income</string>
+    <string name="what_you_earned">How much have you earned?</string>
+    <string name="view_income">View Income</string>
+    <string name="change_settings">Want to change your settings?</string>
+    <string name="view_settings">View Settings</string>
+    <string name="nav_home">Home</string>
 </resources>

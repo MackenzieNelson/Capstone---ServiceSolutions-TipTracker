@@ -174,10 +174,58 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                     return true;
                 }
             });
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.navigationView);
+        Toolbar toolbar = drawerLayout.findViewById(R.id.toolBar);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // Add arrow to menu to close
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // When user clicks on item get callback
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        Log.i("MENU_DRAWER_TAG", "Home item is clicked");
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.nav_track_tips:
+                        Log.i("MENU_DRAWER_TAG", "Track Tip item is clicked");
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.nav_record_tips:
+                        Log.i("MENU_DRAWER_TAG", "Record Tip item is clicked");
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.nav_budget:
+                        Log.i("MENU_DRAWER_TAG", "Budget item is clicked");
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.nav_income_calc:
+                        Log.i("MENU_DRAWER_TAG", "Income Calculation item is clicked");
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.nav_settings:
+                        Log.i("MENU_DRAWER_TAG", "Settings item is clicked");
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                }
+                return true;
+            }
+        });
+
+
         }
     }
 
-    @Override
+   @Override
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -306,8 +354,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, day );
     }
