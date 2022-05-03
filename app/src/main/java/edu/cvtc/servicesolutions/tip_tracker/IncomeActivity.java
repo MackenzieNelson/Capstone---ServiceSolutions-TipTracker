@@ -25,6 +25,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
@@ -194,11 +195,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         month = month +1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day, month, year);
-    }
-
-    public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
     private void restoreOriginalIncomeValues(Bundle savedInstanceState) throws ParseException {
