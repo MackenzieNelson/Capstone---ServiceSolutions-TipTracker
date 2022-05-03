@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
         android:text="Cash/Hourly Rate:"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -33,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <ToggleButton
+        android:id="@+id/cash_hourly_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -48,7 +50,20 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/cash_hourly_rate"
-        app:layout_constraintLeft_toLeftOf="cash_hourly_rate"
+        app:layout_constraintLeft_toLeftOf="@id/cash_hourly_rate"
+        />
+
+    <TextView
+        android:id="@+id/weekly_income_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Weekly Output"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/cash_hourly_rate"
+        app:layout_constraintLeft_toRightOf="@id/weekly_income"
         />
 
     <TextView
@@ -60,7 +75,20 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/weekly_income"
-        app:layout_constraintLeft_toLeftOf="cash_hourly_rate"/>
+        app:layout_constraintLeft_toLeftOf="@id/cash_hourly_rate"/>
+
+    <TextView
+        android:id="@+id/monthly_income_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Monthly Output"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/weekly_income"
+        app:layout_constraintLeft_toRightOf="@id/weekly_income"
+        />
 
     <TextView
         android:id="@+id/yearly_income"
@@ -71,7 +99,20 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/monthly_income"
-        app:layout_constraintLeft_toLeftOf="cash_hourly_rate"/>
+        app:layout_constraintLeft_toLeftOf="@id/cash_hourly_rate"/>
+
+    <TextView
+        android:id="@+id/yearly_income_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Yearly Output"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/monthly_income"
+        app:layout_constraintLeft_toRightOf="@id/yearly_income"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_income_by_day"
