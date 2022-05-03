@@ -21,6 +21,9 @@ public class JobMenuActivity extends AppCompatActivity {
     }
 
     public void showAmountEarned(View view) {
+        Intent intent = new Intent(this, IncomeCalculationsActivity.class);
+        startActivity(intent);
+
     }
 
     public void openViewSettings(View view) {
