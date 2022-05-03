@@ -12,15 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationView;
+
 import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
 
 public class JobActivityMain extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
 
     // Constants
     public static final int ITEM_JOBS = 0;
@@ -39,6 +46,9 @@ public class JobActivityMain extends AppCompatActivity implements LoaderManager.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_job);
+
+        // Hook
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         Toolbar jobToolbar = (Toolbar) findViewById(R.id.add_job_toolbar);
         jobToolbar.setTitle("Add a Job");
