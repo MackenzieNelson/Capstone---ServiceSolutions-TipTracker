@@ -10,6 +10,7 @@ import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfo
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -49,6 +50,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -73,7 +75,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     //Member Variables
     private boolean mIsNewIncome;
-    private boolean mIsCancelling;
+    private boolean mIsCancelling = false;
     private int mIncomeId;
     private double originalHoursWorked;
     private double originalHourlyRate;
@@ -128,6 +130,14 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         hoursWorkedText = findViewById(R.id.hours_worked_text);
         cashTipText = findViewById(R.id.add_cash_tip_text);
         creditTipText = findViewById(R.id.add_credit_tip_text);
+        submitButton = findViewById(R.id.submit_tip_button);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View view) {
+                Context context = getApplicationContext();
+                Toast.makeText(context, "Income Recorded", Toast.LENGTH_SHORT).show();
+                saveIncome();
+            }
+        });
 
         // If it is not a new income, load the income data into the layout
         if (!mIsNewIncome) {
@@ -182,14 +192,14 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
             });
         }
     }
-//   @Override
-//    public void onBackPressed() {
-//        //if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
-//        //    drawerLayout.closeDrawer(GravityCompat.START);
-//        //}
-//
-//        super.onBackPressed();
-//    }
+   @Override
+    public void onBackPressed() {
+        //if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        //    drawerLayout.closeDrawer(GravityCompat.START);
+        //}
+        mIsCancelling = true;
+        super.onBackPressed();
+    }
 
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
@@ -243,7 +253,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
         SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
-        mIncomeId = (int)db.insert(JobInfoEntry.TABLE_NAME, null, values);
+        mIncomeId = (int)db.insert(JobInfoEntry.TABLE_INCOME, null, values);
     }
 
     private void saveIncomeToDatabase(String hoursWorked, String hourlyRate, String creditTips, String cashTips, String date) {
@@ -387,18 +397,18 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
         CursorLoader loader = null;
         if (id == LOADER_INCOME) {
-            loader = createLoaderGames();
+            loader = createLoaderIncome();
         }
         return loader;
     }
 
-    private CursorLoader createLoaderGames() {
+    private CursorLoader createLoaderIncome() {
         return new CursorLoader(this) {
             @Override
             public Cursor loadInBackground() {
                 // Open a connection to the database
                 SQLiteDatabase db = mDbOpenHelper.getReadableDatabase();
-                // Build the selection criteria. In this case, you want to set the ID of the game to the passed-in game id from the Intent.
+                // Build the selection criteria. In this case, you want to set the ID of the Income to the passed-in Income id from the Intent.
                 String selection = JobsDatabaseContract.JobInfoEntry._ID + " = ?";
                 String[] selectionArgs = {Integer.toString(mIncomeId)};
                 // Create a list of the columns you are pulling from the database.
