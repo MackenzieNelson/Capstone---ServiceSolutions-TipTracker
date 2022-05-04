@@ -135,7 +135,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         setSupportActionBar(toolbar);
         if (drawerLayout != null) {
             navigationView = findViewById(R.id.navigationView);
-            actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
+            actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_Open, R.string.menu_Close);
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
 
