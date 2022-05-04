@@ -30,4 +30,6 @@
     <string name="change_settings">Want to change your settings?</string>
     <string name="view_settings">View Settings</string>
     <string name="nav_home">Home</string>
+    <string name="hours_worked_title">Hours Worked</string>
+    <string name="hourly_rate_text">Hourly Rate</string>
 </resources>

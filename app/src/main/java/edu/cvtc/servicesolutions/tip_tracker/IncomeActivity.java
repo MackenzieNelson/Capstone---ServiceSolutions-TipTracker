@@ -181,9 +181,9 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     }
    @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
+        //if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        //    drawerLayout.closeDrawer(GravityCompat.START);
+        //}
 
         super.onBackPressed();
     }
