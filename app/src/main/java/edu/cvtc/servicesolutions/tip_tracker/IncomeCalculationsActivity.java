@@ -27,7 +27,6 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
 
         LoaderManager.getInstance(this).initLoader(LOADER_INCOME, null, this);
 
-
     }
 
     @NonNull

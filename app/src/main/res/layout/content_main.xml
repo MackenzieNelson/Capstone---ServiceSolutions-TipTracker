@@ -134,6 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit Tip"
+        android:onClick="showTimePickerDialog"
         app:layout_constraintStart_toStartOf="@+id/datePickerButton"
         app:layout_constraintTop_toBottomOf="@+id/add_credit_tip_text"/>
 
