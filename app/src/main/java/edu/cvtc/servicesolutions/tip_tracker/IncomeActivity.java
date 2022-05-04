@@ -104,6 +104,14 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.content_main);
+
+        toolbar = (Toolbar) findViewById(R.id.toolBar);
+        toolbar.setTitle("Add Income");
+        setSupportActionBar(toolbar);
+        // Add arrow to menu to close
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mDbOpenHelper = new JobOpenHelper(this);
         readDisplayStateValues();
         // If the bundle is null, save the values. Otherwise restore the original values.
@@ -126,22 +134,17 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
             LoaderManager.getInstance(this).initLoader(LOADER_INCOME, null, this);
         }
 
-        setContentView(R.layout.content_main);
         intDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        setSupportActionBar(toolbar);
+
         if (drawerLayout != null) {
             navigationView = findViewById(R.id.navigationView);
             actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_Open, R.string.menu_Close);
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
-
-
-            // Add arrow to menu to close
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             // When user clicks on item get callback
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -179,14 +182,14 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
             });
         }
     }
-   @Override
-    public void onBackPressed() {
-        //if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
-        //    drawerLayout.closeDrawer(GravityCompat.START);
-        //}
-
-        super.onBackPressed();
-    }
+//   @Override
+//    public void onBackPressed() {
+//        //if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//        //    drawerLayout.closeDrawer(GravityCompat.START);
+//        //}
+//
+//        super.onBackPressed();
+//    }
 
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
