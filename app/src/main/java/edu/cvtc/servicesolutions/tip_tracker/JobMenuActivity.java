@@ -27,7 +27,7 @@ public class JobMenuActivity extends AppCompatActivity {
     }
 
     public void openViewSettings(View view) {
-        Intent intent = new Intent(this, SetttingsActivity.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }

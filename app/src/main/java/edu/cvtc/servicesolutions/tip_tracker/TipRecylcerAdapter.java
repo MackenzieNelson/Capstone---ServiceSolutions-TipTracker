@@ -11,8 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Date;
-
 public class TipRecylcerAdapter extends RecyclerView.Adapter<TipRecylcerAdapter.ViewHolder> {
 
     // Member variables
@@ -40,12 +38,12 @@ public class TipRecylcerAdapter extends RecyclerView.Adapter<TipRecylcerAdapter.
     private void populateColumnPositions() {
         if (mCursor != null) {
             // get column indexes from mCursor
-            mIdPosition = mCursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry._ID);
-            mOriginalHoursWorkedPosition = mCursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE);
-            mOriginalHourlyRatePosition = mCursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED);
-            mOriginalCashTipPosition = mCursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS);
-            mOriginalCreditTipPosition = mCursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS);
-            mOriginalDatePosition = mCursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry.COLUMN_DATE);
+            mIdPosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry._ID);
+            mOriginalHoursWorkedPosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE);
+            mOriginalHourlyRatePosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED);
+            mOriginalCashTipPosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS);
+            mOriginalCreditTipPosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS);
+            mOriginalDatePosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_DATE);
         }
     }
 

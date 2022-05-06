@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
-import kotlinx.coroutines.Job;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry;
 
 
 public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.ViewHolder> {
@@ -107,7 +106,7 @@ public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext, IncomeActivity.class);
+                    Intent intent = new Intent(mContext, JobMenuActivity.class);
                     intent.putExtra(JobActivity.JOB_ID, mId);
                     mContext.startActivity(intent);
                 }

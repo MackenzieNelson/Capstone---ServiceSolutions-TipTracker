@@ -5,14 +5,14 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.Date;
 
-import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry;
 
-public class JobsDataWorker {
+public class DataWorker {
 
     // Member Attributes
     private SQLiteDatabase mDb;
 
-    public JobsDataWorker(SQLiteDatabase db) { mDb = db; }
+    public DataWorker(SQLiteDatabase db) { mDb = db; }
 
     private void insertJob(String jobTitle, String jobDescription) {
         ContentValues values = new ContentValues();

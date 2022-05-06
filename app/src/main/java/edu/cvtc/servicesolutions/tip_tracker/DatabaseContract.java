@@ -2,9 +2,9 @@ package edu.cvtc.servicesolutions.tip_tracker;
 
 import android.provider.BaseColumns;
 
-public class JobsDatabaseContract {
+public class DatabaseContract {
 
-    private JobsDatabaseContract() {
+    private DatabaseContract() {
 
     }
 

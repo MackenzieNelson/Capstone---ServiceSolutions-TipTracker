@@ -1,13 +1,12 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
 import static java.lang.Double.parseDouble;
-import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS;
-import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS;
-import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_DATE;
-import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE;
-import static edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_DATE;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,7 +16,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,10 +24,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-
-import androidx.fragment.app.DialogFragment;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -38,12 +33,6 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-
-import edu.cvtc.servicesolutions.tip_tracker.R;
-import edu.cvtc.servicesolutions.tip_tracker.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,7 +46,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry;
 
 public class IncomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -409,7 +398,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                 // Open a connection to the database
                 SQLiteDatabase db = mDbOpenHelper.getReadableDatabase();
                 // Build the selection criteria. In this case, you want to set the ID of the Income to the passed-in Income id from the Intent.
-                String selection = JobsDatabaseContract.JobInfoEntry._ID + " = ?";
+                String selection = DatabaseContract.JobInfoEntry._ID + " = ?";
                 String[] selectionArgs = {Integer.toString(mIncomeId)};
                 // Create a list of the columns you are pulling from the database.
                 String[] incomeColumns = {

@@ -28,9 +28,9 @@ public class DataManager {
 
 
     private static void loadJobsFromDatabase(Cursor cursor) {
-        int listTitlePosition = cursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry.COLUMN_JOB_TITLE);
-        int listDescriptionPosition = cursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry.COLUMN_JOB_DESCRIPTION);
-        int idPosition = cursor.getColumnIndex(JobsDatabaseContract.JobInfoEntry._ID);
+        int listTitlePosition = cursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_JOB_TITLE);
+        int listDescriptionPosition = cursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_JOB_DESCRIPTION);
+        int idPosition = cursor.getColumnIndex(DatabaseContract.JobInfoEntry._ID);
 
         DataManager dm = getInstance();
         dm.mJobs.clear();
@@ -52,13 +52,13 @@ public class DataManager {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[] jobColumns = {
-                JobsDatabaseContract.JobInfoEntry.COLUMN_JOB_TITLE,
-                JobsDatabaseContract.JobInfoEntry.COLUMN_JOB_DESCRIPTION,
-                JobsDatabaseContract.JobInfoEntry._ID };
+                DatabaseContract.JobInfoEntry.COLUMN_JOB_TITLE,
+                DatabaseContract.JobInfoEntry.COLUMN_JOB_DESCRIPTION,
+                DatabaseContract.JobInfoEntry._ID };
 
-        String jobOrderBy = JobsDatabaseContract.JobInfoEntry.COLUMN_JOB_TITLE;
+        String jobOrderBy = DatabaseContract.JobInfoEntry.COLUMN_JOB_TITLE;
 
-        final Cursor jobCursor = db.query(JobsDatabaseContract.JobInfoEntry.TABLE_NAME, jobColumns,
+        final Cursor jobCursor = db.query(DatabaseContract.JobInfoEntry.TABLE_NAME, jobColumns,
                 null, null, null, null, jobOrderBy);
 
         loadJobsFromDatabase(jobCursor);

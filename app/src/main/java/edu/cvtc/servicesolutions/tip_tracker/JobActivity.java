@@ -12,13 +12,12 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
-import edu.cvtc.servicesolutions.tip_tracker.JobsDatabaseContract.JobInfoEntry;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry;
 
 public class JobActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 

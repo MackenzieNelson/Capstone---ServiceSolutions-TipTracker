@@ -1,15 +1,12 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
@@ -90,18 +87,18 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
 
                     // create list of columns to be returned
                     String[] tipColumns = {
-                            JobsDatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE,
-                            JobsDatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED,
-                            JobsDatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS,
-                            JobsDatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS,
-                            JobsDatabaseContract.JobInfoEntry.COLUMN_DATE,
-                            JobsDatabaseContract.JobInfoEntry._ID };
+                            DatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE,
+                            DatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED,
+                            DatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS,
+                            DatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS,
+                            DatabaseContract.JobInfoEntry.COLUMN_DATE,
+                            DatabaseContract.JobInfoEntry._ID };
 
                     // create an order by field for sorting
-                    String tipOrderBy = JobsDatabaseContract.JobInfoEntry.COLUMN_DATE;
+                    String tipOrderBy = DatabaseContract.JobInfoEntry.COLUMN_DATE;
 
                     // populate cursor with results
-                    return db.query(JobsDatabaseContract.JobInfoEntry.TABLE_NAME,tipColumns,
+                    return db.query(DatabaseContract.JobInfoEntry.TABLE_NAME,tipColumns,
                             null, null, null, null,
                             tipOrderBy);
                 }

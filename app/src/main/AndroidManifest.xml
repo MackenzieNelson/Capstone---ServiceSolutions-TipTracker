@@ -10,21 +10,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceSolutionsTipTracker">
         <activity
-            android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivity"
-            android:exported="false"
-            android:label="@string/add_job_string"
-            android:parentActivityName=".JobActivityMain"/>
-        <activity
             android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivityMain"
             android:exported="true"
             android:label="@string/title_activity_select_job"
             android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-
+        </activity>
+        <activity
+            android:name="edu.cvtc.servicesolutions.tip_tracker.JobActivity"
+            android:exported="false"
+            android:label="@string/add_job_string"
+            android:parentActivityName=".JobActivityMain">
+        </activity>
+        <activity android:name=".JobMenuActivity"
+            android:exported="false"
+            android:label="Main Menu"
+            android:parentActivityName=".JobActivityMain">
+        </activity>
+        <activity android:name=".IncomeCalculationsActivity"
+            android:exported="false"
+            android:label="Income"
+            android:parentActivityName=".JobMenuActivity">
         </activity>
         <activity
             android:name="edu.cvtc.servicesolutions.tip_tracker.IncomeActivity"
