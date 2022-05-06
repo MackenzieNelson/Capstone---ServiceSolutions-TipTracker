@@ -17,7 +17,7 @@ import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
-import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
 public class JobActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -43,7 +43,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
     // Member Objects
     private EditText mTextJobTitle;
     private EditText mTextJobDescription;
-    private JobOpenHelper mDbOpenHelper;
+    private OpenHelper mDbOpenHelper;
     private Cursor mJobCursor;
 
     @Override
@@ -57,7 +57,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
 
-        mDbOpenHelper = new JobOpenHelper(this);
+        mDbOpenHelper = new OpenHelper(this);
 
         readDisplayStateValues();
 
@@ -78,7 +78,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
         }
     }
 
-    private void displayCourse() {
+    private void displayJob() {
 
         // Retrieve the values from the cursor based upon
         // the position of the columns.
@@ -124,15 +124,15 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
 
             // We don't know the values for a new job
             // Set columns to empty
-            values.put(JobInfoEntry.COLUMN_JOB_TITLE, "");
-            values.put(JobInfoEntry.COLUMN_JOB_DESCRIPTION, "");
+            values.put(InfoEntry.COLUMN_JOB_TITLE, "");
+            values.put(InfoEntry.COLUMN_JOB_DESCRIPTION, "");
 
             // Get connection to the database.
             SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
             // Insert the new row in the database and assign new id
             // return value to an int
-            mJobID = (int)db.insert(JobInfoEntry.TABLE_NAME, null, values);
+            mJobID = (int)db.insert(InfoEntry.TABLE_NAME, null, values);
         }
 
         @NonNull
@@ -157,17 +157,17 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
                 SQLiteDatabase db = mDbOpenHelper.getReadableDatabase();
 
                 // Build selection criteria
-                String selection = JobInfoEntry._ID + " = ?";
+                String selection = InfoEntry._ID + " = ?";
                 String[] selectionArgs = {Integer.toString(mJobID)};
 
                 // Create a list of the columns
                 String[] jobColumns = {
-                        JobInfoEntry.COLUMN_JOB_TITLE,
-                        JobInfoEntry.COLUMN_JOB_DESCRIPTION,
+                        InfoEntry.COLUMN_JOB_TITLE,
+                        InfoEntry.COLUMN_JOB_DESCRIPTION,
                 };
 
                 // Fill cursor with the info provided
-                return db.query(JobInfoEntry.TABLE_NAME, jobColumns,
+                return db.query(InfoEntry.TABLE_NAME, jobColumns,
                         selection, selectionArgs, null, null, null);
             }
         };
@@ -186,8 +186,8 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
         mJobCursor = data;
         // Get the positions of the fields in the cursor so that
         // you are able to retrieve them into your layout.
-        mJobTitlePosition = mJobCursor.getColumnIndex(JobInfoEntry.COLUMN_JOB_TITLE);
-        mJobDescriptionPosition = mJobCursor.getColumnIndex(JobInfoEntry.COLUMN_JOB_DESCRIPTION);
+        mJobTitlePosition = mJobCursor.getColumnIndex(InfoEntry.COLUMN_JOB_TITLE);
+        mJobDescriptionPosition = mJobCursor.getColumnIndex(InfoEntry.COLUMN_JOB_DESCRIPTION);
 
         // Make sure that you have moved to the correct record.
         // The cursor will not have populated any of the
@@ -195,7 +195,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
         mJobCursor.moveToNext();
 
         // Call the method to display the course.
-        displayCourse();
+        displayJob();
     }
 
     @Override
@@ -233,13 +233,13 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
 
     private void saveJobToDatabase(String jobTitle, String jobDescription) {
         // Create selection criteria
-        String selection = JobInfoEntry._ID + " = ?";
+        String selection = InfoEntry._ID + " = ?";
         String[] selectionArgs = {Integer.toString(mJobID)};
 
         // Use a ContentValue object to put out information into.
         ContentValues values = new ContentValues();
-        values.put(JobInfoEntry.COLUMN_JOB_TITLE, jobTitle);
-        values.put(JobInfoEntry.COLUMN_JOB_DESCRIPTION, jobDescription);
+        values.put(DatabaseContract.InfoEntry.COLUMN_JOB_TITLE, jobTitle);
+        values.put(DatabaseContract.InfoEntry.COLUMN_JOB_DESCRIPTION, jobDescription);
 
         AsyncTaskLoader<String> task = new AsyncTaskLoader<String>(this) {
             @Nullable
@@ -250,7 +250,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
                 SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
                 // Call the update method
-                db.update(JobInfoEntry.TABLE_NAME, values, selection, selectionArgs);
+                db.update(InfoEntry.TABLE_NAME, values, selection, selectionArgs);
                 return null;
             }
         };
@@ -273,7 +273,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
 
     private void deleteJobFromDatabase() {
         // Create selection criteria
-        final String selection = JobInfoEntry._ID + " = ?";
+        final String selection = InfoEntry._ID + " = ?";
         final String[] selectionArgs = {Integer.toString(mJobID)};
 
         AsyncTaskLoader<String> task = new AsyncTaskLoader<String>(this) {
@@ -285,7 +285,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
                 SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
                 // Call the delete method
-                db.delete(JobInfoEntry.TABLE_NAME, selection, selectionArgs);
+                db.delete(InfoEntry.TABLE_NAME, selection, selectionArgs);
                 return null;
             }
         };

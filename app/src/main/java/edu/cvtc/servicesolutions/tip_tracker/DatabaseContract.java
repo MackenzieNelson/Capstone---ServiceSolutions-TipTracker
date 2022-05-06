@@ -8,7 +8,7 @@ public class DatabaseContract {
 
     }
 
-    public static final class JobInfoEntry implements BaseColumns {
+    public static final class InfoEntry implements BaseColumns {
         public static final String TABLE_NAME = "job_info";
         public static final String COLUMN_JOB_TITLE = "job_title";
         public static final String COLUMN_JOB_DESCRIPTION = "job_description";

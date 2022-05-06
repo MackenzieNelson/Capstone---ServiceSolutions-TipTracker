@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
-import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
 public class JobActivityMain extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -32,12 +32,12 @@ public class JobActivityMain extends AppCompatActivity implements LoaderManager.
     public static final int LOADER_JOBS = 0;
 
     // Member Variables
-    private JobOpenHelper mDbOpenHelper;
+    private OpenHelper mDbOpenHelper;
     private RecyclerView mRecyclerItems;
     private LinearLayoutManager mJobsLayoutManager;
     private JobRecyclerAdapter mJobRecyclerAdapter;
 
-    // Boolean to check if then 'onCreateLoader' method has run
+    // Boolean to check if the 'onCreateLoader' method has run
     private boolean mIsCreated = false;
 
     @Override
@@ -61,7 +61,7 @@ public class JobActivityMain extends AppCompatActivity implements LoaderManager.
                     }
                 });
 
-        mDbOpenHelper = new JobOpenHelper(this);
+        mDbOpenHelper = new OpenHelper(this);
         initializeDisplayContent();
     }
 
@@ -115,15 +115,15 @@ public class JobActivityMain extends AppCompatActivity implements LoaderManager.
 
                     // create list of columns to be returned
                     String[] jobColumns = {
-                            JobInfoEntry.COLUMN_JOB_TITLE,
-                            JobInfoEntry.COLUMN_JOB_DESCRIPTION,
-                            JobInfoEntry._ID };
+                            DatabaseContract.InfoEntry.COLUMN_JOB_TITLE,
+                            DatabaseContract.InfoEntry.COLUMN_JOB_DESCRIPTION,
+                            InfoEntry._ID };
 
                     // create an order by field for sorting
-                    String jobOrderBy = JobInfoEntry.COLUMN_JOB_TITLE;
+                    String jobOrderBy = DatabaseContract.InfoEntry.COLUMN_JOB_TITLE;
 
                     // populate cursor with results
-                    return db.query(JobInfoEntry.TABLE_NAME,jobColumns,
+                    return db.query(DatabaseContract.InfoEntry.TABLE_NAME,jobColumns,
                             null, null, null, null,
                             jobOrderBy);
             }

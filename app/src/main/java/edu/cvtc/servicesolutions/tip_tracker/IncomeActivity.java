@@ -1,11 +1,11 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
 import static java.lang.Double.parseDouble;
-import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS;
-import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS;
-import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_DATE;
-import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE;
-import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry.COLUMN_CASH_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry.COLUMN_CREDIT_TIPS;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry.COLUMN_DATE;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry.COLUMN_HOURLY_RATE;
+import static edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry.COLUMN_HOURS_WORKED;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
@@ -46,7 +46,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
 public class IncomeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -78,7 +78,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     private EditText cashTipText;
     private EditText creditTipText;
     private Button submitButton;
-    private JobOpenHelper mDbOpenHelper;
+    private OpenHelper mDbOpenHelper;
     private Cursor mCursor;
 
     // Calendar to pick date to add tips
@@ -103,7 +103,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         // Add arrow to menu to close
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mDbOpenHelper = new JobOpenHelper(this);
+        mDbOpenHelper = new OpenHelper(this);
         readDisplayStateValues();
         // If the bundle is null, save the values. Otherwise restore the original values.
         if (savedInstanceState == null) {
@@ -242,12 +242,12 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
         SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
-        mIncomeId = (int)db.insert(JobInfoEntry.TABLE_INCOME, null, values);
+        mIncomeId = (int)db.insert(DatabaseContract.InfoEntry.TABLE_INCOME, null, values);
     }
 
     private void saveIncomeToDatabase(String hoursWorked, String hourlyRate, String creditTips, String cashTips, String date) {
         //Create selection criteria
-        String selection = JobInfoEntry._ID + " = ?";
+        String selection = DatabaseContract.InfoEntry._ID + " = ?";
         String[] selectionArgs = {Integer.toString(mIncomeId)};
 
         ContentValues values = new ContentValues();
@@ -255,7 +255,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         values.put(COLUMN_HOURLY_RATE, hourlyRate);
         values.put(COLUMN_CASH_TIPS, cashTips);
         values.put(COLUMN_CREDIT_TIPS, creditTips);
-        values.put(JobInfoEntry.COLUMN_DATE, date);
+        values.put(DatabaseContract.InfoEntry.COLUMN_DATE, date);
 
 
         AsyncTaskLoader<String> task = new AsyncTaskLoader<String>(this) {
@@ -264,7 +264,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
             public String loadInBackground() {
 
                 SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
-                db.update(JobInfoEntry.TABLE_INCOME, values, selection, selectionArgs);
+                db.update(DatabaseContract.InfoEntry.TABLE_INCOME, values, selection, selectionArgs);
                 return null;
             }
         };
@@ -273,7 +273,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     private void deleteIncomeFromDatabase() {
         // Create Selection Criteria
-        String selection = JobInfoEntry._ID + " = ?";
+        String selection = DatabaseContract.InfoEntry._ID + " = ?";
         String[] selectionArgs = {Integer.toString(mIncomeId)};
 
         AsyncTaskLoader<String> task = new AsyncTaskLoader<String>(this) {
@@ -283,7 +283,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                 SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
                 //Delete method
-                db.delete(JobInfoEntry.TABLE_INCOME, selection, selectionArgs);
+                db.delete(DatabaseContract.InfoEntry.TABLE_INCOME, selection, selectionArgs);
                 return null;
             }
         };
@@ -398,7 +398,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                 // Open a connection to the database
                 SQLiteDatabase db = mDbOpenHelper.getReadableDatabase();
                 // Build the selection criteria. In this case, you want to set the ID of the Income to the passed-in Income id from the Intent.
-                String selection = DatabaseContract.JobInfoEntry._ID + " = ?";
+                String selection = InfoEntry._ID + " = ?";
                 String[] selectionArgs = {Integer.toString(mIncomeId)};
                 // Create a list of the columns you are pulling from the database.
                 String[] incomeColumns = {
@@ -408,7 +408,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                         COLUMN_CREDIT_TIPS,
                         COLUMN_DATE,
                 };
-                return db.query(JobInfoEntry.TABLE_INCOME, incomeColumns, selection, selectionArgs, null, null, null);
+                return db.query(DatabaseContract.InfoEntry.TABLE_INCOME, incomeColumns, selection, selectionArgs, null, null, null);
             }
         };
     }

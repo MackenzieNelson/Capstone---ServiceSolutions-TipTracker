@@ -38,12 +38,12 @@ public class TipRecylcerAdapter extends RecyclerView.Adapter<TipRecylcerAdapter.
     private void populateColumnPositions() {
         if (mCursor != null) {
             // get column indexes from mCursor
-            mIdPosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry._ID);
-            mOriginalHoursWorkedPosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE);
-            mOriginalHourlyRatePosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED);
-            mOriginalCashTipPosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS);
-            mOriginalCreditTipPosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS);
-            mOriginalDatePosition = mCursor.getColumnIndex(DatabaseContract.JobInfoEntry.COLUMN_DATE);
+            mIdPosition = mCursor.getColumnIndex(DatabaseContract.InfoEntry._ID);
+            mOriginalHoursWorkedPosition = mCursor.getColumnIndex(DatabaseContract.InfoEntry.COLUMN_HOURLY_RATE);
+            mOriginalHourlyRatePosition = mCursor.getColumnIndex(DatabaseContract.InfoEntry.COLUMN_HOURS_WORKED);
+            mOriginalCashTipPosition = mCursor.getColumnIndex(DatabaseContract.InfoEntry.COLUMN_CASH_TIPS);
+            mOriginalCreditTipPosition = mCursor.getColumnIndex(DatabaseContract.InfoEntry.COLUMN_CREDIT_TIPS);
+            mOriginalDatePosition = mCursor.getColumnIndex(DatabaseContract.InfoEntry.COLUMN_DATE);
         }
     }
 

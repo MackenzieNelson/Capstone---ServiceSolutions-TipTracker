@@ -20,7 +20,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
     public static final int LOADER_TIPS = 0;
 
     // Member Variables
-    private JobOpenHelper mDbOpenHelper;
+    private OpenHelper mDbOpenHelper;
     private RecyclerView mRecyclerItems;
     private LinearLayoutManager mTipsLayoutManager;
     private TipRecylcerAdapter mTipRecyclerAdapter;
@@ -33,7 +33,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_tip);
 
-        mDbOpenHelper = new JobOpenHelper(this);
+        mDbOpenHelper = new OpenHelper(this);
         initializeDisplayContent();
     }
 
@@ -87,18 +87,18 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
 
                     // create list of columns to be returned
                     String[] tipColumns = {
-                            DatabaseContract.JobInfoEntry.COLUMN_HOURLY_RATE,
-                            DatabaseContract.JobInfoEntry.COLUMN_HOURS_WORKED,
-                            DatabaseContract.JobInfoEntry.COLUMN_CASH_TIPS,
-                            DatabaseContract.JobInfoEntry.COLUMN_CREDIT_TIPS,
-                            DatabaseContract.JobInfoEntry.COLUMN_DATE,
-                            DatabaseContract.JobInfoEntry._ID };
+                            DatabaseContract.InfoEntry.COLUMN_HOURLY_RATE,
+                            DatabaseContract.InfoEntry.COLUMN_HOURS_WORKED,
+                            DatabaseContract.InfoEntry.COLUMN_CASH_TIPS,
+                            DatabaseContract.InfoEntry.COLUMN_CREDIT_TIPS,
+                            DatabaseContract.InfoEntry.COLUMN_DATE,
+                            DatabaseContract.InfoEntry._ID };
 
                     // create an order by field for sorting
-                    String tipOrderBy = DatabaseContract.JobInfoEntry.COLUMN_DATE;
+                    String tipOrderBy = DatabaseContract.InfoEntry.COLUMN_DATE;
 
                     // populate cursor with results
-                    return db.query(DatabaseContract.JobInfoEntry.TABLE_NAME,tipColumns,
+                    return db.query(DatabaseContract.InfoEntry.TABLE_NAME,tipColumns,
                             null, null, null, null,
                             tipOrderBy);
                 }

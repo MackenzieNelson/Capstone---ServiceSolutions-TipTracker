@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.JobInfoEntry;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
 
 public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.ViewHolder> {
@@ -37,9 +37,9 @@ public class JobRecyclerAdapter extends RecyclerView.Adapter<JobRecyclerAdapter.
     private void populateColumnPositions() {
         if (mCursor != null) {
             // get column indexes from mCursor
-            mJobTitlePosition = mCursor.getColumnIndex(JobInfoEntry.COLUMN_JOB_TITLE);
-            mJobDescriptionPosition = mCursor.getColumnIndex(JobInfoEntry.COLUMN_JOB_DESCRIPTION);
-            mIdPosition = mCursor.getColumnIndex(JobInfoEntry._ID);
+            mJobTitlePosition = mCursor.getColumnIndex(InfoEntry.COLUMN_JOB_TITLE);
+            mJobDescriptionPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_JOB_DESCRIPTION);
+            mIdPosition = mCursor.getColumnIndex(InfoEntry._ID);
         }
     }
 
