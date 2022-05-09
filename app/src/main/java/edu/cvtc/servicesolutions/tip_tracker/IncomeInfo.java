@@ -11,10 +11,10 @@ public class IncomeInfo implements Parcelable {
     private double iHoursWorked;
     private double iCashTip;
     private double iCreditTip;
-    private Date iDate;
+    private String iDate;
     private int iId;
 
-    protected IncomeInfo(double hourlyWage, double hoursWorked, double cashTip, double creditTip, Date date) {
+    protected IncomeInfo(double hourlyWage, double hoursWorked, double cashTip, double creditTip, String date) {
         iHourlyWage = hourlyWage;
         iHoursWorked = hoursWorked;
         iCashTip = cashTip;
@@ -27,9 +27,10 @@ public class IncomeInfo implements Parcelable {
         iHoursWorked = parcel.readDouble();
         iCashTip = parcel.readDouble();
         iCreditTip = parcel.readDouble();
+        iDate = parcel.readString();
     }
 
-    public IncomeInfo(int id, double hourlyWage, double hoursWorked, double cashTip, double creditTip, Date date) {
+    public IncomeInfo(int id, double hourlyWage, double hoursWorked, double cashTip, double creditTip, String date) {
         iId = id;
         iHourlyWage = hourlyWage;
         iHoursWorked = hoursWorked;
@@ -37,6 +38,7 @@ public class IncomeInfo implements Parcelable {
         iCreditTip = creditTip;
         iDate = date;
     }
+
 
     public double getHourlyWage() {
         return iHourlyWage;
@@ -70,11 +72,11 @@ public class IncomeInfo implements Parcelable {
         this.iCreditTip = creditTip;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return iDate;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.iDate = date;
     }
 
@@ -89,6 +91,7 @@ public class IncomeInfo implements Parcelable {
         parcel.writeDouble(iHoursWorked);
         parcel.writeDouble(iCashTip);
         parcel.writeDouble(iCreditTip);
+        parcel.writeValue(iDate);
     }
 
     public static final Creator<IncomeInfo> CREATOR = new Creator<IncomeInfo>() {

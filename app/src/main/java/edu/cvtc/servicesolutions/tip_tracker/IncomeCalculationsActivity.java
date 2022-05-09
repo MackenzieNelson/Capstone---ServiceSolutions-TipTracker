@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
@@ -24,7 +23,7 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
     private OpenHelper mDbOpenHelper;
     private RecyclerView mRecyclerItems;
     private LinearLayoutManager mIncomeLayoutManager;
-    private IncomeRecyclerAdapter mIncomeRecyclerAdapter;
+    private TipRecylcerAdapter mIncomeRecyclerAdapter;
     
     // Boolean to check if the 'onCreateLoader' method has run
     private boolean mIsCreated = false;
@@ -33,9 +32,6 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income_calculations);
-        
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
 
         mDbOpenHelper = new OpenHelper(this);
         initializeDisplayContent();
@@ -43,14 +39,14 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
 
     private void initializeDisplayContent() {
         // Retrieve the information from your database
-        DataManager.loadFromDatabase(mDbOpenHelper);
+        IncomeDataManager.loadFromDatabase(mDbOpenHelper);
         
         // Set a reference to list of jobs layout
         mRecyclerItems = (RecyclerView) findViewById(R.id.list_income_by_day);
         mIncomeLayoutManager = new LinearLayoutManager(this);
         
         // No cursor, so pass null
-        mIncomeRecyclerAdapter = new IncomeRecyclerAdapter(this, null);
+        mIncomeRecyclerAdapter = new TipRecylcerAdapter(this, null);
         
         // Display Income
         displayIncome();
@@ -89,11 +85,11 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
 
                     // create list of columns to be returned
                     String[] incomeColumns = {
-                            DatabaseContract.InfoEntry.COLUMN_DATE,
                             DatabaseContract.InfoEntry.COLUMN_CASH_TIPS,
                             DatabaseContract.InfoEntry.COLUMN_CREDIT_TIPS,
                             DatabaseContract.InfoEntry.COLUMN_HOURLY_RATE,
                             DatabaseContract.InfoEntry.COLUMN_HOURS_WORKED,
+                            DatabaseContract.InfoEntry.COLUMN_DATE,
                             DatabaseContract.InfoEntry._ID };
 
                     // create an order by field for sorting

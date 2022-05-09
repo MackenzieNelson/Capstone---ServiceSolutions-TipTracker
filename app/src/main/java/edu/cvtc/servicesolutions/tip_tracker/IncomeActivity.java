@@ -70,7 +70,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     private double originalHourlyRate;
     private double originalCashTip;
     private double originalCreditTip;
-    private Date originalDate;
+    private String originalDate;
 
     //Member objects
     private EditText hourlyRateText;
@@ -205,7 +205,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         originalHourlyRate = parseDouble(savedInstanceState.getString(ORIGINAL_HOURLY_RATE));
         originalCashTip = parseDouble(savedInstanceState.getString(ORIGINAL_CASH_TIP));
         originalCreditTip = parseDouble(savedInstanceState.getString(ORIGINAL_CREDIT_TIP));
-        originalDate = new SimpleDateFormat("dd/MM/yyyy").parse(savedInstanceState.getString(ORIGINAL_DATE));
+        originalDate = new SimpleDateFormat("dd/MM/yyyy").parse(savedInstanceState.getString(ORIGINAL_DATE)).toString();
 
     }
 

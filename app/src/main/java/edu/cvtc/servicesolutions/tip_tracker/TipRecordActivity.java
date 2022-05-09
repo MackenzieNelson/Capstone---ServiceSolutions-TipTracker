@@ -39,7 +39,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
 
     private void initializeDisplayContent() {
         // Retrieve the information from your database
-        DataManager.loadFromDatabase(mDbOpenHelper);
+        JobsDataManager.loadFromDatabase(mDbOpenHelper);
 
         // Set a reference to list of tips layout
         mRecyclerItems = (RecyclerView) findViewById(R.id.list_tips);

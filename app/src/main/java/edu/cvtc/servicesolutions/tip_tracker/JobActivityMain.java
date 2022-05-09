@@ -67,7 +67,7 @@ public class JobActivityMain extends AppCompatActivity implements LoaderManager.
 
     private void initializeDisplayContent() {
         // Retrieve the information from your database
-        DataManager.loadFromDatabase(mDbOpenHelper);
+        JobsDataManager.loadFromDatabase(mDbOpenHelper);
 
         // Set a reference to list of jobs layout
         mRecyclerItems = (RecyclerView) findViewById(R.id.list_jobs);
