@@ -3,41 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_job.xml" value="0.25" />
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_job_menu.xml" value="0.1" />
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_select_job.xml" value="0.1540020263424519" />
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_select_tip.xml" value="0.27152988855116517" />
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/content_select_job.xml" value="0.1540020263424519" />
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/content_select_tip.xml" value="0.1540020263424519" />
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/job_list.xml" value="0.1540020263424519" />
-        <entry key="..\:/Users/Carter A. Jensen/Desktop/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/tip_list.xml" value="0.27152988855116517" />
         <entry key="..\:/Users/Kenzie/AndroidStudioProjects/ServiceSolutionsTipTracker/app/src/main/res/layout/activity_main.xml" value="0.13269927536231885" />
         <entry key="..\:/Users/Kenzie/AndroidStudioProjects/ServiceSolutionsTipTracker/app/src/main/res/layout/content_main.xml" value="0.21" />
-        <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_income_calculations.xml" value="0.2125" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_job.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_job_menu.xml" value="0.22871376811594202" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_main.xml" value="0.38813405797101447" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_select_job.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_settings.xml" value="0.40260416666666665" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/content_select_job.xml" value="0.1" />
-        <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/header.xml" value="0.2125" />
-        <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/income_by_day_list.xml" value="0.2125" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/job_list.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/select_job_toolbar.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/tip_list.xml" value="0.40260416666666665" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/menu/menu_job.xml" value="0.17037037037037037" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/menu/menu_main.xml" value="0.22" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/menu/select_job_menu.xml" value="0.1" />
         <entry key="..\:/Users/ericm/OneDrive - Chippewa Valley Technical College/Spring Credits 2022/IT Developer Capstone -22363/Capstone---ServiceSolutions-TipTracker/app/src/main/res/menu/select_job_toolbar.xml" value="0.1" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/drawable/ic_calculate.xml" value="0.1" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/drawable/ic_calendar.xml" value="0.1" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_budget.xml" value="0.30416666666666664" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_income_calculations.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_job.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_job_menu.xml" value="0.2977777777777778" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_main.xml" value="0.18055555555555555" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_select_job.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_settings.xml" value="0.2977777777777778" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/activity_setttings.xml" value="0.1" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/content_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/content_select_job.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/content_select_tip.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/expense_list_item.xml" value="0.30416666666666664" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/header.xml" value="0.1" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/job_list.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/layout/tip_list.xml" value="0.30416666666666664" />
         <entry key="..\:/Users/naomi/serversolution/Capstone---ServiceSolutions-TipTracker/app/src/main/res/menu/menu_main.xml" value="0.3333333333333333" />
       </map>
     </option>
