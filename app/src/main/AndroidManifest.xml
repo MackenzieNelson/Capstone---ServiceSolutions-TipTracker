@@ -39,12 +39,18 @@
             android:name="edu.cvtc.servicesolutions.tip_tracker.IncomeActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:parentActivityName=".JobMenuActivity"
             android:theme="@style/Theme.ServiceSolutionsTipTracker.NoActionBar">
         </activity>
         <activity android:name=".SettingsActivity"
             android:exported="false"
             android:label="@string/settings"
-            android:parentActivityName=".JobActivityMain">
+            android:parentActivityName=".JobMenuActivity">
+        </activity>
+        <activity android:name=".BudgetActivity"
+            android:exported="false"
+            android:label="@string/budget"
+            android:parentActivityName=".JobMenuActivity">
         </activity>
     </application>
 

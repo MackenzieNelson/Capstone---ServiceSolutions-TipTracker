@@ -2,6 +2,7 @@ package edu.cvtc.servicesolutions.tip_tracker;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +70,7 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mLayoutInflater.inflate(R.layout.income_by_day_list, parent, false);
+        Log.d("abc", String.valueOf(itemView));
         return new ViewHolder(itemView);
     }
 
@@ -76,7 +78,7 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Move the cursor to the correct row
         mCursor.moveToPosition(position);
-
+        Log.d("abc", String.valueOf(holder));
         // get the actual values
         int id = mCursor.getInt(mIdPosition);
         double originalHoursWorked = mCursor.getDouble(mOriginalHoursWorkedPosition);
@@ -110,8 +112,8 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.income_hours_worked);
-            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.income_hourly_rate);
+            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.income_day_hours_worked);
+            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.income_day_hourly_rate);
             mOriginalCashTip = (TextView) itemView.findViewById(R.id.income_day_cash);
             mOriginalCreditTip = (TextView) itemView.findViewById(R.id.income_day_credit);
             mOriginalDate = (TextView) itemView.findViewById(R.id.income_day);
