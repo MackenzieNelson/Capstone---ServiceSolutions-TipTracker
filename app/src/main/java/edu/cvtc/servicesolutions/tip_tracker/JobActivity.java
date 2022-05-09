@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
@@ -58,6 +59,15 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
+
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Customize the back button
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_add_job);
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         mDbOpenHelper = new OpenHelper(this);
 
