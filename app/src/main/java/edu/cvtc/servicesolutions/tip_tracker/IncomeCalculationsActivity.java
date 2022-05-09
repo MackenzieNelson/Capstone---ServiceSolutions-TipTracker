@@ -12,6 +12,7 @@ import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
 public class IncomeCalculationsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -85,18 +86,18 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
 
                     // create list of columns to be returned
                     String[] incomeColumns = {
-                            DatabaseContract.InfoEntry.COLUMN_CASH_TIPS,
-                            DatabaseContract.InfoEntry.COLUMN_CREDIT_TIPS,
-                            DatabaseContract.InfoEntry.COLUMN_HOURLY_RATE,
-                            DatabaseContract.InfoEntry.COLUMN_HOURS_WORKED,
-                            DatabaseContract.InfoEntry.COLUMN_DATE,
-                            DatabaseContract.InfoEntry._ID };
+                            InfoEntry.COLUMN_CASH_TIPS,
+                            InfoEntry.COLUMN_CREDIT_TIPS,
+                            InfoEntry.COLUMN_HOURLY_RATE,
+                            InfoEntry.COLUMN_HOURS_WORKED,
+                            InfoEntry.COLUMN_DATE,
+                            InfoEntry._ID };
 
                     // create an order by field for sorting
-                    String incomeOrderBy = DatabaseContract.InfoEntry.COLUMN_DATE;
+                    String incomeOrderBy = InfoEntry.COLUMN_DATE;
 
                     // populate cursor with results
-                    return db.query(DatabaseContract.InfoEntry.TABLE_NAME,incomeColumns,
+                    return db.query(InfoEntry.TABLE_INCOME,incomeColumns,
                             null, null, null, null,
                             incomeOrderBy);
                 }

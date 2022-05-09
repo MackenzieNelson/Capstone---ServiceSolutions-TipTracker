@@ -27,6 +27,7 @@ public class OpenHelper extends SQLiteOpenHelper {
 
         DataWorker worker = new DataWorker(db);
         worker.insertJobs();
+        worker.insertIncomes();
     }
 
     @Override

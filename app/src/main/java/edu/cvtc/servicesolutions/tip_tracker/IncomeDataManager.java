@@ -63,7 +63,7 @@ public class IncomeDataManager {
 
         String incomeOrderBy = InfoEntry.COLUMN_DATE;
 
-        final Cursor incomeCursor = db.query(InfoEntry.TABLE_NAME, incomeColumns,
+        final Cursor incomeCursor = db.query(InfoEntry.TABLE_INCOME, incomeColumns,
                 null, null, null, null, incomeOrderBy);
 
         loadIncomeFromDatabase(incomeCursor);
