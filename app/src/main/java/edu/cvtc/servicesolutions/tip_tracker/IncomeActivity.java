@@ -186,7 +186,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         //if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
         //    drawerLayout.closeDrawer(GravityCompat.START);
         //}
-        mIsCancelling = true;
+        //mIsCancelling = true;
         super.onBackPressed();
     }
 
