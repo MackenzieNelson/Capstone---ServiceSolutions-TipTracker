@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:text="@string/finished_work"
         android:textSize="20sp"
@@ -85,4 +85,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_settings"
         tools:layout_constraintTop_toBottomOf="@id/change_settings" />
+
+    <TextView
+        android:id="@+id/view_budget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/view_budget"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_settings_button"
+        tools:layout_constraintTop_toBottomOf="@id/view_settings_button" />
+
+    <Button
+        android:id="@+id/view_budget_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/budget"
+        android:onClick="openBudget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_budget"
+        tools:layout_constraintTop_toBottomOf="@id/view_budget" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
