@@ -26,21 +26,20 @@ public class DataWorker {
         insertJob("Server/Bartender", "Typical FOH Duties");
     }
 
-    private void insertIncome(double hourlyRate, double hoursWorked, double cashTip, double creditTip, Date date) {
+    private void insertIncome(double hourlyRate, double hoursWorked, double cashTips, double creditTips, String date) {
         ContentValues values = new ContentValues();
         values.put(InfoEntry.COLUMN_HOURLY_RATE, hourlyRate);
         values.put(DatabaseContract.InfoEntry.COLUMN_HOURS_WORKED, hoursWorked);
-        values.put(InfoEntry.COLUMN_CASH_TIPS, cashTip);
-        values.put(InfoEntry.COLUMN_CREDIT_TIPS, creditTip);
-        //TODO: Figure out how to use DATE data type in database
-        //values.put(InfoEntry.COLUMN_DATE, date);
+        values.put(InfoEntry.COLUMN_CASH_TIPS, cashTips);
+        values.put(InfoEntry.COLUMN_CREDIT_TIPS, creditTips);
+        values.put(InfoEntry.COLUMN_DATE, String.valueOf(date));
 
 
         long newRowId = mDb.insert(InfoEntry.TABLE_INCOME, null, values);
     }
 
     public void insertIncomes() {
-        insertJob("Server/Bartender", "Typical FOH Duties");
+        insertIncome(2.33, 25, 180, 100, "05-08-2022");
     }
 
     private void insertExpense(String expenseName, String expenseAmount) {

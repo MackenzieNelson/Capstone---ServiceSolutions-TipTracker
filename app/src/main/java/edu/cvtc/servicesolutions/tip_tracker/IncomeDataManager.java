@@ -35,14 +35,15 @@ public class IncomeDataManager {
         dm.mIncome.clear();
 
         while (cursor.moveToNext()) {
-            double listCashTips = cursor.getDouble(listCashTipsPosition);
-            double listCreditTips = cursor.getDouble(listCreditTipsPosition);
             double listHourlyRate = cursor.getDouble(listHourlyRatePosition);
             double listHoursWorked = cursor.getDouble(listHoursWorkedPosition);
+            double listCashTips = cursor.getDouble(listCashTipsPosition);
+            double listCreditTips = cursor.getDouble(listCreditTipsPosition);
             String listDate = cursor.getString(listDatePosition);
             int id = cursor.getInt(idPosition);
 
-            IncomeInfo list = new IncomeInfo(id, listCashTips, listCreditTips, listHourlyRate, listHoursWorked, listDate);
+
+            IncomeInfo list = new IncomeInfo(id, listHourlyRate, listHoursWorked, listCashTips, listCreditTips, listDate);
 
             dm.mIncome.add(list);
         }
@@ -53,10 +54,10 @@ public class IncomeDataManager {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[] incomeColumns = {
-                InfoEntry.COLUMN_CASH_TIPS,
-                InfoEntry.COLUMN_CREDIT_TIPS,
                 InfoEntry.COLUMN_HOURLY_RATE,
                 InfoEntry.COLUMN_HOURS_WORKED,
+                InfoEntry.COLUMN_CASH_TIPS,
+                InfoEntry.COLUMN_CREDIT_TIPS,
                 InfoEntry.COLUMN_DATE,
                 InfoEntry._ID };
 

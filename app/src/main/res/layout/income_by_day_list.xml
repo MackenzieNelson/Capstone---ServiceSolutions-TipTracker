@@ -27,15 +27,55 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/income_day_average"
+                android:id="@+id/income_day_hours_worked"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Amount"
+                android:text="Hours Worked:"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintEnd_toEndOf="@+id/income_day"
                 app:layout_constraintStart_toStartOf="@+id/income_day"
                 app:layout_constraintTop_toBottomOf="@+id/income_day" />
+            <TextView
+                android:id="@+id/income_day_hourly_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Hourly Rate:"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintEnd_toEndOf="@+id/income_day"
+                app:layout_constraintStart_toStartOf="@+id/income_day_hours_worked"
+                app:layout_constraintTop_toBottomOf="@+id/income_day_hours_worked" />
+            <TextView
+                android:id="@+id/income_day_cash"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Cash Tips:"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintEnd_toEndOf="@+id/income_day"
+                app:layout_constraintStart_toStartOf="@+id/income_day_hourly_rate"
+                app:layout_constraintTop_toBottomOf="@+id/income_day_hourly_rate" />
+            <TextView
+                android:id="@+id/income_day_credit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Credit Tips:"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintEnd_toEndOf="@+id/income_day"
+                app:layout_constraintStart_toStartOf="@+id/income_day_cash"
+                app:layout_constraintTop_toBottomOf="@+id/income_day_cash" />
+            <TextView
+                android:id="@+id/income_day_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Total Income for Day:"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintEnd_toEndOf="@+id/income_day"
+                app:layout_constraintStart_toStartOf="@+id/income_day_credit"
+                app:layout_constraintTop_toBottomOf="@+id/income_day_credit" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
