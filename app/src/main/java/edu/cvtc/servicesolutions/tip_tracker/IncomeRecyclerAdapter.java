@@ -1,7 +1,6 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,8 +38,8 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         if(mCursor != null) {
             // get column indexes
             mIdPosition = mCursor.getColumnIndex(InfoEntry._ID);
-            mOriginalHoursWorkedPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_HOURLY_RATE);
-            mOriginalHourlyRatePosition = mCursor.getColumnIndex(InfoEntry.COLUMN_HOURS_WORKED);
+            mOriginalHoursWorkedPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_HOURS_WORKED);
+            mOriginalHourlyRatePosition = mCursor.getColumnIndex(InfoEntry.COLUMN_HOURLY_RATE);
             mOriginalCashTipPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_CASH_TIPS);
             mOriginalCreditTipPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_CREDIT_TIPS);
             mOriginalDatePosition = mCursor.getColumnIndex(InfoEntry.COLUMN_DATE);
@@ -87,12 +86,12 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         String originalDate = mCursor.getString(mOriginalDatePosition);
 
         // pass the info
-        holder.mId = id;
-        holder.mOriginalHoursWorked.setText(String.valueOf(mOriginalHoursWorkedPosition));
-        holder.mOriginalHourlyRate.setText(String.valueOf(mOriginalHourlyRatePosition));
-        holder.mOriginalCashTip.setText(String.valueOf(mOriginalCashTipPosition));
-        holder.mOriginalCreditTip.setText(String.valueOf(mOriginalCreditTipPosition));
+        holder.mOriginalHoursWorked.setText(String.valueOf(originalHoursWorked));
+        holder.mOriginalHourlyRate.setText(String.valueOf(originalHourlyRate));
+        holder.mOriginalCashTip.setText(String.valueOf(originalCashTip));
+        holder.mOriginalCreditTip.setText(String.valueOf(originalCreditTip));
         holder.mOriginalDate.setText(originalDate);
+        holder.mId = id;
     }
     @Override
     public int getItemCount() {

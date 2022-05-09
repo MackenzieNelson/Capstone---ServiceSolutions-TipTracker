@@ -59,7 +59,7 @@ public class JobsDataManager {
 
         String jobOrderBy = InfoEntry.COLUMN_JOB_TITLE;
 
-        final Cursor jobCursor = db.query(InfoEntry.TABLE_NAME, jobColumns,
+        final Cursor jobCursor = db.query(InfoEntry.TABLE_JOB, jobColumns,
                 null, null, null, null, jobOrderBy);
 
         loadJobsFromDatabase(jobCursor);

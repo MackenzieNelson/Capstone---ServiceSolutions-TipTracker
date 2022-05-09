@@ -98,7 +98,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
                     String tipOrderBy = DatabaseContract.InfoEntry.COLUMN_DATE;
 
                     // populate cursor with results
-                    return db.query(DatabaseContract.InfoEntry.TABLE_NAME,tipColumns,
+                    return db.query(DatabaseContract.InfoEntry.TABLE_JOB,tipColumns,
                             null, null, null, null,
                             tipOrderBy);
                 }

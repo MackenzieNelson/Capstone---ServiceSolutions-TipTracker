@@ -20,7 +20,7 @@ public class OpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // create the three tables
-        db.execSQL(DatabaseContract.InfoEntry.SQL_CREATE_TABLE);
+        db.execSQL(DatabaseContract.InfoEntry.SQL_CREATE_TABLE_JOBS);
         db.execSQL(DatabaseContract.InfoEntry.SQL_CREATE_TABLE_EXPENSES);
         db.execSQL(DatabaseContract.InfoEntry.SQL_CREATE_TABLE_INCOME);
         db.execSQL(InfoEntry.SQL_CREATE_INDEX1);

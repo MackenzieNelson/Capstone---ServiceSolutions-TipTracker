@@ -132,7 +132,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
 
             // Insert the new row in the database and assign new id
             // return value to an int
-            mJobID = (int)db.insert(InfoEntry.TABLE_NAME, null, values);
+            mJobID = (int)db.insert(InfoEntry.TABLE_JOB, null, values);
         }
 
         @NonNull
@@ -167,7 +167,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
                 };
 
                 // Fill cursor with the info provided
-                return db.query(InfoEntry.TABLE_NAME, jobColumns,
+                return db.query(InfoEntry.TABLE_JOB, jobColumns,
                         selection, selectionArgs, null, null, null);
             }
         };
@@ -250,7 +250,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
                 SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
                 // Call the update method
-                db.update(InfoEntry.TABLE_NAME, values, selection, selectionArgs);
+                db.update(InfoEntry.TABLE_JOB, values, selection, selectionArgs);
                 return null;
             }
         };
@@ -285,7 +285,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
                 SQLiteDatabase db = mDbOpenHelper.getWritableDatabase();
 
                 // Call the delete method
-                db.delete(InfoEntry.TABLE_NAME, selection, selectionArgs);
+                db.delete(InfoEntry.TABLE_JOB, selection, selectionArgs);
                 return null;
             }
         };
