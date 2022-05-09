@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,13 +75,11 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
 
         // If it is not a new job, load the job into the layout
         if (!mIsNewJob) {
-
             LoaderManager.getInstance(this).initLoader(LOADER_JOBS, null, this);
         }
     }
 
     private void displayJob() {
-
         // Retrieve the values from the cursor based upon
         // the position of the columns.
         String jobTitle = mJobCursor.getString(mJobTitlePosition);
@@ -221,11 +221,27 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
         // Handle the action bar item clicks here. The action bar
         // will automatically handle clicks on the Home/Up button, so
         // long as you specify a parent activity
-        int id = item.getItemId();
-
-        if (id == R.id.action_cancel) {
-            mIsCancelling = true;
-            finish();
+        switch (item.getItemId()) {
+            case R.id.action_cancel:
+                mIsCancelling = true;
+                finish();
+                break;
+            case android.R.id.home:
+                if (TextUtils.isEmpty(mTextJobTitle.getText().toString()) && TextUtils.isEmpty(mTextJobDescription.getText().toString())) {
+                    Toast.makeText(JobActivity.this, "Job Title and Job Description is Required", Toast.LENGTH_LONG).show();
+                    mIsCancelling = true;
+                } else if (TextUtils.isEmpty(mTextJobTitle.getText().toString())) {
+                    Toast.makeText(JobActivity.this, "Job Title is Required", Toast.LENGTH_LONG).show();
+                    mIsCancelling = true;
+                } else if (TextUtils.isEmpty(mTextJobDescription.getText().toString())) {
+                    Toast.makeText(JobActivity.this, "Job Description is Required", Toast.LENGTH_LONG).show();
+                    mIsCancelling = true;
+                } else {
+                    saveJob();
+                    Intent intent = new Intent(this, JobActivityMain.class);
+                    startActivity(intent);
+                }
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -236,7 +252,7 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
         String selection = InfoEntry._ID + " = ?";
         String[] selectionArgs = {Integer.toString(mJobID)};
 
-        // Use a ContentValue object to put out information into.
+        // Use a ContentValue object to put our information into.
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.InfoEntry.COLUMN_JOB_TITLE, jobTitle);
         values.put(DatabaseContract.InfoEntry.COLUMN_JOB_DESCRIPTION, jobDescription);
