@@ -32,4 +32,13 @@
     <string name="nav_home">Home</string>
     <string name="hours_worked_title">Hours Worked</string>
     <string name="hourly_rate_text">Hourly Rate</string>
+    <string name="menu_open">Open</string>
+    <string name="change_to_dark_mode">Change To Dark Mode:</string>
+    <string name="tip_information">Tip Information</string>
+    <string name="track_tips">Track Tips</string>
+    <string name="tip_record">Tip Record</string>
+    <string name="budgeting">Budgeting</string>
+    <string name="budget">Budget</string>
+    <string name="calculate_income">Calculate Income</string>
+    <string name="settings">Settings</string>
 </resources>
