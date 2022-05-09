@@ -206,7 +206,9 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         originalHourlyRate = savedInstanceState.getDouble(ORIGINAL_HOURLY_RATE);
         originalCashTip = savedInstanceState.getDouble(ORIGINAL_CASH_TIP);
         originalCreditTip = savedInstanceState.getDouble(ORIGINAL_CREDIT_TIP);
+
         originalDate = new SimpleDateFormat("dd/MM/yyyy").parse(savedInstanceState.getString(ORIGINAL_DATE)).toString();
+
     }
 
     private void saveOriginalIncomeValues() {
@@ -370,10 +372,10 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-//            return true;
-//        }
-//
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

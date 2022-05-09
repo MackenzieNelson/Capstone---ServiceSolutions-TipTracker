@@ -4,12 +4,17 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
@@ -23,9 +28,6 @@ import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
 public class JobActivityMain extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
 
     // Constants
     public static final int ITEM_JOBS = 0;
@@ -40,13 +42,12 @@ public class JobActivityMain extends AppCompatActivity implements LoaderManager.
     // Boolean to check if the 'onCreateLoader' method has run
     private boolean mIsCreated = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_job);
 
-        // Hook
-        drawerLayout = findViewById(R.id.drawer_layout);
 
         Toolbar jobToolbar = (Toolbar) findViewById(R.id.add_job_toolbar);
         jobToolbar.setTitle("Add a Job");

@@ -30,9 +30,4 @@ public class JobMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
-
-    public void openBudget(View view) {
-        Intent intent = new Intent(this, BudgetActivity.class);
-        startActivity(intent);
-    }
 }
