@@ -2,6 +2,7 @@ package edu.cvtc.servicesolutions.tip_tracker;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,19 +87,21 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         String originalDate = mCursor.getString(mOriginalDatePosition);
 
         // pass the info
+        holder.mId = id;
         holder.mOriginalHoursWorked.setText(String.valueOf(originalHoursWorked));
         holder.mOriginalHourlyRate.setText(String.valueOf(originalHourlyRate));
         holder.mOriginalCashTip.setText(String.valueOf(originalCashTip));
         holder.mOriginalCreditTip.setText(String.valueOf(originalCreditTip));
         holder.mOriginalDate.setText(originalDate);
-        holder.mId = id;
     }
+
     @Override
     public int getItemCount() {
         // if the cursor is null, return 0. Otherwise
         // return the count of records
         return mCursor == null ? 0 : mCursor.getCount();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Member variables for inner class
         public int mId;
@@ -110,8 +113,8 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.income_hours_worked);
-            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.income_hourly_rate);
+            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.income_day_hours_worked);
+            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.income_day_hourly_rate);
             mOriginalCashTip = (TextView) itemView.findViewById(R.id.income_day_cash);
             mOriginalCreditTip = (TextView) itemView.findViewById(R.id.income_day_credit);
             mOriginalDate = (TextView) itemView.findViewById(R.id.income_day);
