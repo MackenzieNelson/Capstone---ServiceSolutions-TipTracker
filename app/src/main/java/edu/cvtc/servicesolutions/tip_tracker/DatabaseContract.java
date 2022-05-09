@@ -9,7 +9,7 @@ public class DatabaseContract {
     }
 
     public static final class InfoEntry implements BaseColumns {
-        public static final String TABLE_NAME = "job_info";
+        public static final String TABLE_JOB = "job_info";
         public static final String COLUMN_JOB_TITLE = "job_title";
         public static final String COLUMN_JOB_DESCRIPTION = "job_description";
 
@@ -26,11 +26,11 @@ public class DatabaseContract {
         public static final String COLUMN_EXPENSE_AMOUNT = "expense_amount";
 
 
-        public static final String INDEX1 = TABLE_NAME + "_index1";
+        public static final String INDEX1 = TABLE_JOB + "_index1";
         public static final String SQL_CREATE_INDEX1 = "CREATE INDEX " + INDEX1 + " ON " +
-                TABLE_NAME + "(" + COLUMN_JOB_TITLE + ")";
+                TABLE_JOB + "(" + COLUMN_JOB_TITLE + ")";
         // create job table
-        public static final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
+        public static final String SQL_CREATE_TABLE_JOBS = "CREATE TABLE " + TABLE_JOB + " (" +
                 _ID + " INTEGER PRIMARY KEY, " +
                 COLUMN_JOB_TITLE + " TEXT NOT NULL, " +
                 COLUMN_JOB_DESCRIPTION + " TEXT)";

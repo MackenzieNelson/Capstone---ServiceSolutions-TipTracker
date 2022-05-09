@@ -19,7 +19,7 @@ public class DataWorker {
         values.put(InfoEntry.COLUMN_JOB_TITLE, jobTitle);
         values.put(InfoEntry.COLUMN_JOB_DESCRIPTION, jobDescription);
 
-        long newRowId = mDb.insert(InfoEntry.TABLE_NAME, null, values);
+        long newRowId = mDb.insert(InfoEntry.TABLE_JOB, null, values);
     }
 
     public void insertJobs() {
@@ -29,7 +29,7 @@ public class DataWorker {
     private void insertIncome(double hourlyRate, double hoursWorked, double cashTips, double creditTips, String date) {
         ContentValues values = new ContentValues();
         values.put(InfoEntry.COLUMN_HOURLY_RATE, hourlyRate);
-        values.put(DatabaseContract.InfoEntry.COLUMN_HOURS_WORKED, hoursWorked);
+        values.put(InfoEntry.COLUMN_HOURS_WORKED, hoursWorked);
         values.put(InfoEntry.COLUMN_CASH_TIPS, cashTips);
         values.put(InfoEntry.COLUMN_CREDIT_TIPS, creditTips);
         values.put(InfoEntry.COLUMN_DATE, String.valueOf(date));

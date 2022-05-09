@@ -1,8 +1,8 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +39,8 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         if(mCursor != null) {
             // get column indexes
             mIdPosition = mCursor.getColumnIndex(InfoEntry._ID);
-            mOriginalHoursWorkedPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_HOURLY_RATE);
-            mOriginalHourlyRatePosition = mCursor.getColumnIndex(InfoEntry.COLUMN_HOURS_WORKED);
+            mOriginalHoursWorkedPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_HOURS_WORKED);
+            mOriginalHourlyRatePosition = mCursor.getColumnIndex(InfoEntry.COLUMN_HOURLY_RATE);
             mOriginalCashTipPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_CASH_TIPS);
             mOriginalCreditTipPosition = mCursor.getColumnIndex(InfoEntry.COLUMN_CREDIT_TIPS);
             mOriginalDatePosition = mCursor.getColumnIndex(InfoEntry.COLUMN_DATE);
@@ -70,6 +70,7 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mLayoutInflater.inflate(R.layout.income_by_day_list, parent, false);
+        Log.d("abc", String.valueOf(itemView));
         return new ViewHolder(itemView);
     }
 
@@ -77,7 +78,7 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Move the cursor to the correct row
         mCursor.moveToPosition(position);
-
+        Log.d("abc", String.valueOf(holder));
         // get the actual values
         int id = mCursor.getInt(mIdPosition);
         double originalHoursWorked = mCursor.getDouble(mOriginalHoursWorkedPosition);
@@ -88,18 +89,20 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
 
         // pass the info
         holder.mId = id;
-        holder.mOriginalHoursWorked.setText(String.valueOf(mOriginalHoursWorkedPosition));
-        holder.mOriginalHourlyRate.setText(String.valueOf(mOriginalHourlyRatePosition));
-        holder.mOriginalCashTip.setText(String.valueOf(mOriginalCashTipPosition));
-        holder.mOriginalCreditTip.setText(String.valueOf(mOriginalCreditTipPosition));
+        holder.mOriginalHoursWorked.setText(String.valueOf(originalHoursWorked));
+        holder.mOriginalHourlyRate.setText(String.valueOf(originalHourlyRate));
+        holder.mOriginalCashTip.setText(String.valueOf(originalCashTip));
+        holder.mOriginalCreditTip.setText(String.valueOf(originalCreditTip));
         holder.mOriginalDate.setText(originalDate);
     }
+
     @Override
     public int getItemCount() {
         // if the cursor is null, return 0. Otherwise
         // return the count of records
         return mCursor == null ? 0 : mCursor.getCount();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Member variables for inner class
         public int mId;
@@ -111,8 +114,8 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.income_hours_worked);
-            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.income_hourly_rate);
+            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.income_day_hours_worked);
+            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.income_day_hourly_rate);
             mOriginalCashTip = (TextView) itemView.findViewById(R.id.income_day_cash);
             mOriginalCreditTip = (TextView) itemView.findViewById(R.id.income_day_credit);
             mOriginalDate = (TextView) itemView.findViewById(R.id.income_day);

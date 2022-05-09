@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
@@ -24,10 +23,10 @@ public class IncomeDataManager {
     public List<IncomeInfo> getmIncome() { return mIncome; }
 
     private static void loadIncomeFromDatabase(Cursor cursor){
-        int listCashTipsPosition = cursor.getColumnIndex(InfoEntry.COLUMN_CASH_TIPS);
-        int listCreditTipsPosition = cursor.getColumnIndex(InfoEntry.COLUMN_CREDIT_TIPS);
         int listHourlyRatePosition = cursor.getColumnIndex(InfoEntry.COLUMN_HOURLY_RATE);
         int listHoursWorkedPosition = cursor.getColumnIndex(InfoEntry.COLUMN_HOURS_WORKED);
+        int listCashTipsPosition = cursor.getColumnIndex(InfoEntry.COLUMN_CASH_TIPS);
+        int listCreditTipsPosition = cursor.getColumnIndex(InfoEntry.COLUMN_CREDIT_TIPS);
         int listDatePosition = cursor.getColumnIndex(InfoEntry.COLUMN_DATE);
         int idPosition = cursor.getColumnIndex(InfoEntry._ID);
 

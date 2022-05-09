@@ -116,15 +116,15 @@ public class JobActivityMain extends AppCompatActivity implements LoaderManager.
 
                     // create list of columns to be returned
                     String[] jobColumns = {
-                            DatabaseContract.InfoEntry.COLUMN_JOB_TITLE,
-                            DatabaseContract.InfoEntry.COLUMN_JOB_DESCRIPTION,
+                            InfoEntry.COLUMN_JOB_TITLE,
+                            InfoEntry.COLUMN_JOB_DESCRIPTION,
                             InfoEntry._ID };
 
                     // create an order by field for sorting
-                    String jobOrderBy = DatabaseContract.InfoEntry.COLUMN_JOB_TITLE;
+                    String jobOrderBy = InfoEntry.COLUMN_JOB_TITLE;
 
                     // populate cursor with results
-                    return db.query(DatabaseContract.InfoEntry.TABLE_NAME,jobColumns,
+                    return db.query(InfoEntry.TABLE_JOB,jobColumns,
                             null, null, null, null,
                             jobOrderBy);
             }

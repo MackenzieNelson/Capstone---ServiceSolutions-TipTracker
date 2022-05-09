@@ -24,7 +24,7 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
     private OpenHelper mDbOpenHelper;
     private RecyclerView mRecyclerItems;
     private LinearLayoutManager mIncomeLayoutManager;
-    private TipRecylcerAdapter mIncomeRecyclerAdapter;
+    private IncomeRecyclerAdapter mIncomeRecyclerAdapter;
     
     // Boolean to check if the 'onCreateLoader' method has run
     private boolean mIsCreated = false;
@@ -47,7 +47,7 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
         mIncomeLayoutManager = new LinearLayoutManager(this);
         
         // No cursor, so pass null
-        mIncomeRecyclerAdapter = new TipRecylcerAdapter(this, null);
+        mIncomeRecyclerAdapter = new IncomeRecyclerAdapter(this, null);
         
         // Display Income
         displayIncome();
@@ -86,10 +86,10 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
 
                     // create list of columns to be returned
                     String[] incomeColumns = {
-                            InfoEntry.COLUMN_CASH_TIPS,
-                            InfoEntry.COLUMN_CREDIT_TIPS,
                             InfoEntry.COLUMN_HOURLY_RATE,
                             InfoEntry.COLUMN_HOURS_WORKED,
+                            InfoEntry.COLUMN_CASH_TIPS,
+                            InfoEntry.COLUMN_CREDIT_TIPS,
                             InfoEntry.COLUMN_DATE,
                             InfoEntry._ID };
 
