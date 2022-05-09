@@ -372,9 +372,9 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
+//        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
