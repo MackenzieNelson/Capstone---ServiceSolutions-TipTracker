@@ -21,6 +21,8 @@
     <!-- Strings used for navigation drawer -->
     <string name="menu_Open">Open</string>
     <string name="menu_Close">Close</string>
+    <string name ="menu_drawer_open">Drawer Open</string>
+    <string name ="menu_drawer_close">Drawer Close</string>
 
 
     <string name="finished_work">Just finished work?</string>
