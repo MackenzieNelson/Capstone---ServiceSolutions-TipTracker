@@ -85,13 +85,31 @@ public class IncomeInfo implements Parcelable {
         return 0;
     }
 
+
+    private String getCompareKey() { return iHourlyWage + "|" + iHoursWorked + "|" + iCashTip + "|" + iCreditTip + "|" + iDate; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IncomeInfo that = (IncomeInfo) o;
+        return getCompareKey().equals(that.getCompareKey());
+    }
+
+    @Override
+    public int hashCode() { return getCompareKey().hashCode(); }
+
+    @Override
+    public String toString() { return getCompareKey(); }
+
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeDouble(iHourlyWage);
         parcel.writeDouble(iHoursWorked);
         parcel.writeDouble(iCashTip);
         parcel.writeDouble(iCreditTip);
-        parcel.writeValue(iDate);
+        parcel.writeString(iDate);
     }
 
     public static final Creator<IncomeInfo> CREATOR = new Creator<IncomeInfo>() {

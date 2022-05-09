@@ -12,12 +12,6 @@
         android:id="@+id/appBarLayout"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:id="@+id/toolBar"
-            android:layout_height="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:titleTextColor="@color/white"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -88,19 +88,21 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         String originalDate = mCursor.getString(mOriginalDatePosition);
 
         // pass the info
+        holder.mId = id;
         holder.mOriginalHoursWorked.setText(String.valueOf(originalHoursWorked));
         holder.mOriginalHourlyRate.setText(String.valueOf(originalHourlyRate));
         holder.mOriginalCashTip.setText(String.valueOf(originalCashTip));
         holder.mOriginalCreditTip.setText(String.valueOf(originalCreditTip));
         holder.mOriginalDate.setText(originalDate);
-        holder.mId = id;
     }
+
     @Override
     public int getItemCount() {
         // if the cursor is null, return 0. Otherwise
         // return the count of records
         return mCursor == null ? 0 : mCursor.getCount();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Member variables for inner class
         public int mId;

@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
