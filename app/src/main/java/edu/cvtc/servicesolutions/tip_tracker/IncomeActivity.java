@@ -202,10 +202,10 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     private void restoreOriginalIncomeValues(Bundle savedInstanceState) throws ParseException {
         // Get the original values from the savedInstanceState
         Log.d("abc", String.valueOf(savedInstanceState));
-        originalHoursWorked = parseDouble(savedInstanceState.getString(ORIGINAL_HOURS_WORKED));
-        originalHourlyRate = parseDouble(savedInstanceState.getString(ORIGINAL_HOURLY_RATE));
-        originalCashTip = parseDouble(savedInstanceState.getString(ORIGINAL_CASH_TIP));
-        originalCreditTip = parseDouble(savedInstanceState.getString(ORIGINAL_CREDIT_TIP));
+        originalHoursWorked = savedInstanceState.getDouble(ORIGINAL_HOURS_WORKED);
+        originalHourlyRate = savedInstanceState.getDouble(ORIGINAL_HOURLY_RATE);
+        originalCashTip = savedInstanceState.getDouble(ORIGINAL_CASH_TIP);
+        originalCreditTip = savedInstanceState.getDouble(ORIGINAL_CREDIT_TIP);
         originalDate = new SimpleDateFormat("dd/MM/yyyy").parse(savedInstanceState.getString(ORIGINAL_DATE)).toString();
     }
 
@@ -411,19 +411,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                 return db.query(DatabaseContract.InfoEntry.TABLE_INCOME, incomeColumns, selection, selectionArgs, null, null, null);
             }
         };
-    }
-
-    protected void onPause() {
-        super.onPause();
-        if (mIsCancelling) {
-            if (mIsNewIncome) {
-                deleteIncomeFromDatabase();
-            } else {
-                storePreviousIncomeValues();
-            }
-        } else {
-            saveIncome();
-        }
     }
 
     @Override

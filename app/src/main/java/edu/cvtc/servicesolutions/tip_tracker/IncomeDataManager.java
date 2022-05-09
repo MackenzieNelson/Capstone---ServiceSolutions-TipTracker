@@ -2,6 +2,7 @@ package edu.cvtc.servicesolutions.tip_tracker;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class IncomeDataManager {
         return ourInstance;
     }
 
-    public List<IncomeInfo> getmIncome() { return mIncome; }
+    public List<IncomeInfo> getIncome() { return mIncome; }
 
     private static void loadIncomeFromDatabase(Cursor cursor){
         int listHourlyRatePosition = cursor.getColumnIndex(InfoEntry.COLUMN_HOURLY_RATE);
@@ -46,6 +47,7 @@ public class IncomeDataManager {
 
             dm.mIncome.add(list);
         }
+        Log.d("xxx", String.valueOf(dm.mIncome));
         cursor.close();
     }
 

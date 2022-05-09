@@ -39,7 +39,7 @@ public class DataWorker {
     }
 
     public void insertIncomes() {
-        insertIncome(2.33, 25, 180, 100, "05-08-2022");
+        insertIncome(2.33, 25, 180, 100, "MAY 08-2022");
     }
 
     private void insertExpense(String expenseName, String expenseAmount) {
