@@ -70,7 +70,7 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mLayoutInflater.inflate(R.layout.income_by_day_list, parent, false);
-        Log.d("abc", String.valueOf(itemView));
+
         return new ViewHolder(itemView);
     }
 
@@ -78,7 +78,6 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Move the cursor to the correct row
         mCursor.moveToPosition(position);
-        Log.d("abc", String.valueOf(holder));
         // get the actual values
         int id = mCursor.getInt(mIdPosition);
         double originalHoursWorked = mCursor.getDouble(mOriginalHoursWorkedPosition);
