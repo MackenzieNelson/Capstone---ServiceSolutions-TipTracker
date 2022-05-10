@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
 public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAdapter.ViewHolder> {
@@ -70,7 +71,6 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mLayoutInflater.inflate(R.layout.income_by_day_list, parent, false);
-
         return new ViewHolder(itemView);
     }
 
@@ -84,6 +84,7 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         double originalHourlyRate = mCursor.getDouble(mOriginalHourlyRatePosition);
         double originalCashTip = mCursor.getDouble(mOriginalCashTipPosition);
         double originalCreditTip = mCursor.getDouble(mOriginalCreditTipPosition);
+        double calculatedTotalIncome = ((originalHoursWorked * originalHourlyRate) + originalCashTip + originalCreditTip);
         String originalDate = mCursor.getString(mOriginalDatePosition);
 
         // pass the info
@@ -93,6 +94,7 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         holder.mOriginalCashTip.setText(String.valueOf(originalCashTip));
         holder.mOriginalCreditTip.setText(String.valueOf(originalCreditTip));
         holder.mOriginalDate.setText(originalDate);
+        holder.totalIncome.setText(String.valueOf(calculatedTotalIncome));
     }
 
     @Override
@@ -110,14 +112,17 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         public final TextView mOriginalCashTip;
         public final TextView mOriginalCreditTip;
         public final TextView mOriginalDate;
+        public final TextView totalIncome;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.income_day_hours_worked);
-            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.income_day_hourly_rate);
-            mOriginalCashTip = (TextView) itemView.findViewById(R.id.income_day_cash);
-            mOriginalCreditTip = (TextView) itemView.findViewById(R.id.income_day_credit);
-            mOriginalDate = (TextView) itemView.findViewById(R.id.income_day);
+            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.rV_hours_output);
+            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.rV_rate_output);
+            mOriginalCashTip = (TextView) itemView.findViewById(R.id.rV_cash_output);
+            mOriginalCreditTip = (TextView) itemView.findViewById(R.id.rV_credit_output);
+            mOriginalDate = (TextView) itemView.findViewById(R.id.rV_date_label);
+            totalIncome = (TextView) itemView.findViewById(R.id.rV_total_output);
         }
     }
 }
