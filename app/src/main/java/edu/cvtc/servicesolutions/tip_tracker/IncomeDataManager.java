@@ -47,7 +47,6 @@ public class IncomeDataManager {
 
             dm.mIncome.add(list);
         }
-        Log.d("xxx", String.valueOf(dm.mIncome));
         cursor.close();
     }
 

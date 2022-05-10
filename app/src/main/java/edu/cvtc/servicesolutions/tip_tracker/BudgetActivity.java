@@ -46,9 +46,6 @@ public class BudgetActivity extends AppCompatActivity {
             String date = income.get(i).getDate();
             currentMonthString = getMonthFormat(currentMonth);
             if (date != null) {
-                Log.d("abc", date);
-                Log.d("abc", String.valueOf(currentTime));
-                Log.d("abc", String.valueOf(date.contains(currentMonthString)));
                 if (date.contains(currentMonthString)) {
                     double hoursWorked = income.get(i).getHoursWorked();
                     double hourlyRate = income.get(i).getHourlyWage();

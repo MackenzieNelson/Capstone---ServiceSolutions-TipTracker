@@ -201,7 +201,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     private void restoreOriginalIncomeValues(Bundle savedInstanceState) throws ParseException {
         // Get the original values from the savedInstanceState
-        Log.d("abc", String.valueOf(savedInstanceState));
         originalHoursWorked = savedInstanceState.getDouble(ORIGINAL_HOURS_WORKED);
         originalHourlyRate = savedInstanceState.getDouble(ORIGINAL_HOURLY_RATE);
         originalCashTip = savedInstanceState.getDouble(ORIGINAL_CASH_TIP);
@@ -342,17 +341,17 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         if(month == 3)
             return "MAR";
         if(month == 4)
-            return "APRIL";
+            return "APR";
         if(month == 5)
             return "MAY";
         if(month == 6)
-            return "JUNE";
+            return "JUN";
         if(month == 7)
-            return "JULY";
+            return "JUL";
         if(month == 8)
             return "AUG";
         if(month == 9)
-            return "SEPT";
+            return "SEP";
         if(month == 10)
             return "OCT";
         if(month == 11)
