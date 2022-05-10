@@ -66,23 +66,21 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
             int currentYear = currentTime.getTime().getYear() + 1900;
             String date = income.get(i).getDate();
             currentMonthString = getMonthFormat(currentMonth);
-            //day of week is a number for current date
 //            dayOfWeek = currentTime.get(Calendar.DAY_OF_WEEK);
 //            String dayOfWeekString = getDayFormat(dayOfWeek);
-            //LocalDate dateDate = LocalDate.parse(date, formatter);
-            //int numberOfMonth = dateDate.getDayOfMonth();
-            //int currentNumberOfMonth = currentTime.getTime().getDate();
+            LocalDate dateDate = LocalDate.parse(date, formatter);
+            int numberOfMonth = dateDate.getDayOfMonth();
+            int currentNumberOfMonth = currentTime.getTime().getDate();
 //            DayOfWeek incomeDayOfWeek = dateDate.getDayOfWeek();
-            //Log.d("abc", String.valueOf(currentNumberOfMonth));
             if (date != null) {
                 double hoursWorked = income.get(i).getHoursWorked();
                 double hourlyRate = income.get(i).getHourlyWage();
                 double cashAmount = income.get(i).getCashTip();
                 double creditAmount = income.get(i).getCreditTip();
                 double hourlyAmount = hoursWorked * hourlyRate;
-//                if (numberOfMonth - currentNumberOfMonth < 7 && numberOfMonth - currentNumberOfMonth > 0) {
-//                    totalWeeklyIncome += cashAmount + creditAmount + hourlyAmount;
-//                }
+                if ((numberOfMonth - (currentNumberOfMonth - 1) < 8)) {
+                    totalWeeklyIncome += cashAmount + creditAmount + hourlyAmount;
+                }
                 if (date.contains(currentMonthString)) {
                     totalMonthlyIncome += cashAmount + creditAmount + hourlyAmount;
                 }
