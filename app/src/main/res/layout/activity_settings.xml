@@ -26,6 +26,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/darkModeText" />
 
+    <Button
+        android:id="@+id/button_delete_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/clear_income_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_delete_jobs" />
+
+    <Button
+        android:id="@+id/button_delete_expenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/clear_expenses_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_delete_tips" />
+
+    <Button
+        android:id="@+id/button_delete_jobs"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:text="@string/clear_jobs_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
