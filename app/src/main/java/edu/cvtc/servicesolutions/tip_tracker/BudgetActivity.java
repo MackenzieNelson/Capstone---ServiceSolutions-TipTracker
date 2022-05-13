@@ -60,7 +60,7 @@ public class BudgetActivity extends AppCompatActivity {
         incomeOutput = findViewById(R.id.monthly_average_output);
         currentMonth = findViewById(R.id.current_month);
         currentMonth.setText(currentMonthString);
-        incomeOutput.setText((String.valueOf(totalIncome)));
+        incomeOutput.setText("$" + (totalIncome));
 
     }
 
