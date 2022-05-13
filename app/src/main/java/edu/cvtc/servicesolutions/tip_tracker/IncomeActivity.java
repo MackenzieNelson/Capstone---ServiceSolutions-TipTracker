@@ -183,9 +183,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     }
    @Override
     public void onBackPressed() {
-        //if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
-        //    drawerLayout.closeDrawer(GravityCompat.START);
-        //}
+
         //mIsCancelling = true;
         super.onBackPressed();
     }
@@ -327,6 +325,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
         datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, day );
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
 
     private String makeDateString(int day, int month, int year) {
