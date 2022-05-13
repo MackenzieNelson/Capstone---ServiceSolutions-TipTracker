@@ -27,7 +27,7 @@
         </activity>
         <activity android:name=".JobMenuActivity"
             android:exported="false"
-            android:label="Main Menu"
+            android:label="Job Menu"
             android:parentActivityName=".JobActivityMain">
         </activity>
         <activity android:name=".IncomeCalculationsActivity"
