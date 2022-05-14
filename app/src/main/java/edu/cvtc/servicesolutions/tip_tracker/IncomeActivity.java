@@ -64,7 +64,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     //Member Variables
     private boolean mIsNewIncome;
-    private boolean mIsCancelling = false;
+    private boolean mIsCancelling;
     private int mIncomeId;
     private double originalHoursWorked;
     private double originalHourlyRate;
@@ -184,7 +184,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
    @Override
     public void onBackPressed() {
 
-        //mIsCancelling = true;
+        mIsCancelling = true;
         super.onBackPressed();
     }
 
@@ -373,7 +373,12 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 //        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
 //            return true;
 //        }
-
+        mIsCancelling = true;
+        int id = item.getItemId();
+        if (id == R.id.action_cancel) {
+            mIsCancelling = true;
+            finish();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -417,6 +422,19 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     protected void onDestroy() {
         mDbOpenHelper.close();
         super.onDestroy();
+    }
+
+    protected void onPause() {
+        super.onPause();
+        if (mIsCancelling) {
+            if (mIsNewIncome) {
+                deleteIncomeFromDatabase();
+            } else {
+                storePreviousIncomeValues();
+            }
+        } else {
+            saveIncome();
+        }
     }
 
     @Override
