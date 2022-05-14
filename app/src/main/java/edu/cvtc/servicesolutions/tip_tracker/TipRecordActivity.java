@@ -65,8 +65,10 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
     }
 
     private void displayTips() {
-        mRecyclerItems.setLayoutManager(mTipsLayoutManager);
-        mRecyclerItems.setAdapter(mTipRecyclerAdapter);
+        if (mRecyclerItems != null) {
+            mRecyclerItems.setLayoutManager(mTipsLayoutManager);
+            mRecyclerItems.setAdapter(mTipRecyclerAdapter);
+        }
     }
 
     @Override
@@ -101,7 +103,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
                     String tipOrderBy = DatabaseContract.InfoEntry.COLUMN_DATE;
 
                     // populate cursor with results
-                    return db.query(DatabaseContract.InfoEntry.TABLE_JOB,tipColumns,
+                    return db.query(DatabaseContract.InfoEntry.TABLE_INCOME, tipColumns,
                             null, null, null, null,
                             tipOrderBy);
                 }
