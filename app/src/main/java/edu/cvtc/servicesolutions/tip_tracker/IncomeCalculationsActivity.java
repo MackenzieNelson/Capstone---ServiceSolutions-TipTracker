@@ -1,9 +1,12 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -228,5 +231,39 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
             // change the cursor to null (cleanup)
             mIncomeRecyclerAdapter.changeCursor(null);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_income_calc, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.nav_track_tips) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, IncomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_budget) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, BudgetActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_home) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, JobActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_record_tips) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, TipRecordActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

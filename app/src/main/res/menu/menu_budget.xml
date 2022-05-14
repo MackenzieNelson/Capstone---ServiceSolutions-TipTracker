@@ -2,11 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-   <group android:checkableBehavior="single">
-       <item
-           android:id="@+id/nav_home"
-           android:title="@string/nav_home"/>
-   </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/nav_home"/>
+    </group>
 
     <group android:checkableBehavior="single">
         <item
@@ -16,8 +16,8 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_budget"
-            android:title="@string/budget"/>
+            android:id="@+id/nav_track_tips"
+            android:title="@string/track_tips"/>
     </group>
 
     <group android:checkableBehavior="single">

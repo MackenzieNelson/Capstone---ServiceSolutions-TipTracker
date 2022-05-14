@@ -158,10 +158,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                             Log.i("MENU_DRAWER_TAG", "Home item is clicked");
                             drawerLayout.closeDrawer(GravityCompat.START);
                             break;
-                        case R.id.nav_track_tips:
-                            Log.i("MENU_DRAWER_TAG", "Track Tip item is clicked");
-                            drawerLayout.closeDrawer(GravityCompat.START);
-                            break;
                         case R.id.nav_record_tips:
                             Log.i("MENU_DRAWER_TAG", "Record Tip item is clicked");
                             drawerLayout.closeDrawer(GravityCompat.START);
@@ -376,11 +372,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         mIsCancelling = true;
         int id = item.getItemId();
-        if (id == R.id.nav_track_tips) {
-            Intent intent = new Intent(IncomeActivity.this, IncomeActivity.class);
-            startActivity(intent);
-            finish();
-        } else if (id == R.id.nav_budget) {
+         if (id == R.id.nav_budget) {
             Intent intent = new Intent(IncomeActivity.this, BudgetActivity.class);
             startActivity(intent);
             finish();
