@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,9 +48,7 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
     private TextView weeklyIncomeOutput;
     private TextView monthlyIncomeOutput;
     private TextView yearlyIncomeOutput;
-    private double totalWeeklyIncome = 0;
-    private double totalMonthlyIncome = 0;
-    private double totalYearlyIncome = 0;
+    private ToggleButton toggleButton;
     Calendar currentTime = Calendar.getInstance();
     int dayOfWeek;
     DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("MMM dd yyyy").toFormatter(Locale.ENGLISH);
@@ -59,10 +60,44 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income_calculations);
+        toggleButton = findViewById(R.id.toggle);
+        toggleButton.setOnClickListener(new View.OnClickListener()  {
+
+            @Override
+            public void onClick(View view) {
+                calculateIncome();
+            }
+        });
 
         mDbOpenHelper = new OpenHelper(this);
         initializeDisplayContent();
 
+        weeklyIncomeOutput = findViewById(R.id.weekly_income_output);
+        monthlyIncomeOutput = findViewById(R.id.monthly_income_output);
+        yearlyIncomeOutput = findViewById(R.id.yearly_income_output);
+
+        calculateIncome();
+    }
+
+    private void initializeDisplayContent() {
+        // Retrieve the information from your database
+        IncomeDataManager.loadFromDatabase(mDbOpenHelper);
+        
+        // Set a reference to list of jobs layout
+        mRecyclerItems = (RecyclerView) findViewById(R.id.list_income_by_day);
+        mIncomeLayoutManager = new LinearLayoutManager(this);
+        
+        // No cursor, so pass null
+        mIncomeRecyclerAdapter = new IncomeRecyclerAdapter(this, null);
+        
+        // Display Income
+        displayIncome();
+    }
+
+    private void calculateIncome() {
+        double totalWeeklyIncome = 0;
+        double totalMonthlyIncome = 0;
+        double totalYearlyIncome = 0;
         for (int i = 0; i < income.size(); i++) {
             // Calender uses 0-11 for months instead on 1-12
             int currentMonth = (currentTime.getTime().getMonth()) + 1;
@@ -81,38 +116,32 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
                 double cashAmount = income.get(i).getCashTip();
                 double creditAmount = income.get(i).getCreditTip();
                 double hourlyAmount = hoursWorked * hourlyRate;
-                if ((numberOfMonth - (currentNumberOfMonth - 1) < 8)) {
-                    totalWeeklyIncome += cashAmount + creditAmount + hourlyAmount;
-                }
-                if (date.contains(currentMonthString)) {
-                    totalMonthlyIncome += cashAmount + creditAmount + hourlyAmount;
-                }
-                if (date.contains(String.valueOf(currentYear))) {
-                    totalYearlyIncome += cashAmount + creditAmount + hourlyAmount;
+                if (toggleButton.isChecked()) {
+                    if ((numberOfMonth - (currentNumberOfMonth - 1) < 8)) {
+                        totalWeeklyIncome += cashAmount + creditAmount;
+                    }
+                    if (date.contains(currentMonthString)) {
+                        totalMonthlyIncome += cashAmount + creditAmount;
+                    }
+                    if (date.contains(String.valueOf(currentYear))) {
+                        totalYearlyIncome += cashAmount + creditAmount;
+                    }
+                } else {
+                    if ((numberOfMonth - (currentNumberOfMonth - 1) < 8)) {
+                        totalWeeklyIncome += cashAmount + creditAmount + hourlyAmount;
+                    }
+                    if (date.contains(currentMonthString)) {
+                        totalMonthlyIncome += cashAmount + creditAmount + hourlyAmount;
+                    }
+                    if (date.contains(String.valueOf(currentYear))) {
+                        totalYearlyIncome += cashAmount + creditAmount + hourlyAmount;
+                    }
                 }
             }
         }
-        weeklyIncomeOutput = findViewById(R.id.weekly_income_output);
-        monthlyIncomeOutput = findViewById(R.id.monthly_income_output);
-        yearlyIncomeOutput = findViewById(R.id.yearly_income_output);
         weeklyIncomeOutput.setText(String.valueOf(totalWeeklyIncome));
         monthlyIncomeOutput.setText(String.valueOf(totalMonthlyIncome));
         yearlyIncomeOutput.setText(String.valueOf(totalYearlyIncome));
-    }
-
-    private void initializeDisplayContent() {
-        // Retrieve the information from your database
-        IncomeDataManager.loadFromDatabase(mDbOpenHelper);
-        
-        // Set a reference to list of jobs layout
-        mRecyclerItems = (RecyclerView) findViewById(R.id.list_income_by_day);
-        mIncomeLayoutManager = new LinearLayoutManager(this);
-        
-        // No cursor, so pass null
-        mIncomeRecyclerAdapter = new IncomeRecyclerAdapter(this, null);
-        
-        // Display Income
-        displayIncome();
     }
 
     @Override
