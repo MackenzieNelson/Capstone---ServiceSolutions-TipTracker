@@ -140,7 +140,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer);
 
         if (drawerLayout != null) {
             navigationView = findViewById(R.id.navigationView);
@@ -385,7 +385,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_income_calc) {
-            Intent intent = new Intent(IncomeActivity.this, TipRecordActivity.class);
+            Intent intent = new Intent(IncomeActivity.this, IncomeCalculationsActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_settings) {
@@ -394,6 +394,10 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
             finish();
         } else if (id == R.id.nav_home) {
             Intent intent = new Intent(IncomeActivity.this, JobActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_record_tips) {
+            Intent intent = new Intent(IncomeActivity.this, TipRecordActivity.class);
             startActivity(intent);
             finish();
         }
