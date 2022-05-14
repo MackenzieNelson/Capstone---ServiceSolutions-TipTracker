@@ -36,6 +36,7 @@ import androidx.loader.content.Loader;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -125,6 +126,8 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                 Context context = getApplicationContext();
                 Toast.makeText(context, "Income Recorded", Toast.LENGTH_SHORT).show();
                 saveIncome();
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
         });
 
