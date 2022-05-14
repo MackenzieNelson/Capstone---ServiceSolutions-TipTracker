@@ -270,6 +270,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                 return null;
             }
         };
+        mIsNewIncome = false;
         task.loadInBackground();
     }
 
