@@ -374,13 +374,27 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-//            return true;
-//        }
         mIsCancelling = true;
         int id = item.getItemId();
-        if (id == R.id.action_cancel) {
-            mIsCancelling = true;
+        if (id == R.id.nav_track_tips) {
+            Intent intent = new Intent(IncomeActivity.this, IncomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_budget) {
+            Intent intent = new Intent(IncomeActivity.this, BudgetActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_income_calc) {
+            Intent intent = new Intent(IncomeActivity.this, TipRecordActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(IncomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_home) {
+            Intent intent = new Intent(IncomeActivity.this, JobActivityMain.class);
+            startActivity(intent);
             finish();
         }
         return super.onOptionsItemSelected(item);

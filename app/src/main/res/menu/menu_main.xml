@@ -5,8 +5,7 @@
    <group android:checkableBehavior="single">
        <item
            android:id="@+id/nav_home"
-           android:title="@string/nav_home"
-           android:icon="@drawable/ic_home"/>
+           android:title="@string/nav_home"/>
    </group>
 
     <group android:checkableBehavior="single">
@@ -15,12 +14,10 @@
                 <group>
                     <item
                         android:id="@+id/nav_track_tips"
-                        android:title="@string/track_tips"
-                        android:icon="@drawable/ic_home"/>
+                        android:title="@string/track_tips"/>
                     <item
                         android:id="@+id/nav_record_tips"
-                        android:title="@string/tip_record"
-                        android:icon="@drawable/ic_home"/>
+                        android:title="@string/tip_record"/>
                 </group>
             </menu>
         </item>
@@ -32,12 +29,10 @@
                 <group>
                     <item
                         android:id="@+id/nav_budget"
-                        android:title="@string/budget"
-                        android:icon="@drawable/ic_home"/>
+                        android:title="@string/budget"/>
                     <item
                         android:id="@+id/nav_income_calc"
-                        android:title="@string/calculate_income"
-                        android:icon="@drawable/ic_home"/>
+                        android:title="@string/calculate_income"/>
                 </group>
             </menu>
         </item>
@@ -46,7 +41,6 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_settings"
-            android:title="@string/settings"
-            android:icon="@drawable/ic_home"/>
+            android:title="@string/settings"/>
     </group>
 </menu>
