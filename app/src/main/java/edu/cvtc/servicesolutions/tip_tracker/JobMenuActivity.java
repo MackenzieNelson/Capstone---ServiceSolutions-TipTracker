@@ -35,4 +35,9 @@ public class JobMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BudgetActivity.class);
         startActivity(intent);
     }
+
+    public void openTipRecord(View view) {
+        Intent intent = new Intent(this, TipRecordActivity.class);
+        startActivity(intent);
+    }
 }

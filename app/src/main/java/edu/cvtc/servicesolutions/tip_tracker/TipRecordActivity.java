@@ -6,17 +6,31 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+
+import java.util.Calendar;
+import java.util.TimeZone;
+
 public class TipRecordActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    // Date Range Picker
+    private Button mDatePickerBtn;
+    private TextView mSelectedDateText;
 
     // Constants
     public static final int ITEM_TIPS = 0;
@@ -38,6 +52,30 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
 
         mDbOpenHelper = new OpenHelper(this);
         initializeDisplayContent();
+
+        mDatePickerBtn = findViewById(R.id.tip_datePickerBtn);
+        mSelectedDateText = findViewById(R.id.selected_date);
+
+
+        // MaterialDatePicker
+        MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+
+
+        MaterialDatePicker materialDatePicker = builder.build();
+
+        mDatePickerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                    @Override
+                    public void onPositiveButtonClick(Object selection) {
+                        mSelectedDateText.setText(materialDatePicker.getHeaderText());
+                    }
+                });
+            }
+        });
+
     }
 
     private void initializeDisplayContent() {

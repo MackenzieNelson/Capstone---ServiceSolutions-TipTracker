@@ -50,7 +50,7 @@
         android:id="@+id/button_delete_jobs"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="200dp"
         android:text="@string/clear_jobs_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
