@@ -59,34 +59,6 @@
         tools:layout_constraintTop_toBottomOf="@id/what_you_earned" />
 
     <TextView
-        android:id="@+id/change_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/change_settings"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_income_button"
-        tools:layout_constraintTop_toBottomOf="@id/view_income_button" />
-
-    <Button
-        android:id="@+id/view_settings_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/view_settings"
-        android:onClick="openViewSettings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_settings"
-        tools:layout_constraintTop_toBottomOf="@id/change_settings" />
-
-    <TextView
         android:id="@+id/view_budget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,8 +69,8 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_settings_button"
-        tools:layout_constraintTop_toBottomOf="@id/view_settings_button" />
+        app:layout_constraintTop_toBottomOf="@+id/view_income_button"
+        tools:layout_constraintTop_toBottomOf="@id/view_income_button" />
 
     <Button
         android:id="@+id/view_budget_button"
@@ -141,5 +113,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_tip_records"
         tools:layout_constraintTop_toBottomOf="@+id/view_tip_records" />
+
+    <TextView
+        android:id="@+id/change_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/change_settings"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_tips_button"
+        tools:layout_constraintTop_toBottomOf="@id/view_tips_button" />
+
+    <Button
+        android:id="@+id/view_settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/view_settings"
+        android:onClick="openViewSettings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_settings"
+        tools:layout_constraintTop_toBottomOf="@id/change_settings" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
