@@ -19,6 +19,15 @@ android {
         viewBinding true
     }
 
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def appName = "Service Solutions - Tip Tracker"
+            def date = new Date()
+            def formattedDate = date.format('MMM-dd-yyyy')
+            outputFileName = appName + formattedDate + "-${variant.versionName}-${variant.versionCode}.apk"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
