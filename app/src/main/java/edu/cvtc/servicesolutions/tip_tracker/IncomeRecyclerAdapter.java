@@ -1,5 +1,6 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.MessageFormat;
 
 import edu.cvtc.servicesolutions.tip_tracker.DatabaseContract.InfoEntry;
 
@@ -74,6 +77,7 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
         return new ViewHolder(itemView);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Move the cursor to the correct row
@@ -89,12 +93,12 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
 
         // pass the info
         holder.mId = id;
-        holder.mOriginalHoursWorked.setText(String.valueOf(originalHoursWorked));
-        holder.mOriginalHourlyRate.setText(String.valueOf(originalHourlyRate));
-        holder.mOriginalCashTip.setText(String.valueOf(originalCashTip));
-        holder.mOriginalCreditTip.setText(String.valueOf(originalCreditTip));
+        holder.mOriginalHoursWorked.setText(String.format("%.2f", originalHoursWorked));
+        holder.mOriginalHourlyRate.setText(MessageFormat.format("${0}", String.format("%.2f", originalHourlyRate)));
+        holder.mOriginalCashTip.setText(MessageFormat.format("${0}", String.format("%.2f", originalCashTip)));
+        holder.mOriginalCreditTip.setText(MessageFormat.format("${0}", String.format("%.2f", originalCreditTip)));
         holder.mOriginalDate.setText(originalDate);
-        holder.totalIncome.setText(String.valueOf(calculatedTotalIncome));
+        holder.totalIncome.setText(MessageFormat.format("${0}", String.format("%.2f", calculatedTotalIncome)));
     }
 
     @Override
@@ -117,12 +121,12 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.rV_hours_output);
-            mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.rV_rate_output);
-            mOriginalCashTip = (TextView) itemView.findViewById(R.id.rV_cash_output);
-            mOriginalCreditTip = (TextView) itemView.findViewById(R.id.rV_credit_output);
-            mOriginalDate = (TextView) itemView.findViewById(R.id.rV_date_label);
-            totalIncome = (TextView) itemView.findViewById(R.id.rV_total_output);
+            mOriginalHoursWorked = itemView.findViewById(R.id.rV_hours_output);
+            mOriginalHourlyRate = itemView.findViewById(R.id.rV_rate_output);
+            mOriginalCashTip = itemView.findViewById(R.id.rV_cash_output);
+            mOriginalCreditTip = itemView.findViewById(R.id.rV_credit_output);
+            mOriginalDate = itemView.findViewById(R.id.rV_date_label);
+            totalIncome = itemView.findViewById(R.id.rV_total_output);
         }
     }
 }

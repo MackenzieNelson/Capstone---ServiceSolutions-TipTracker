@@ -1,5 +1,6 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,6 +22,7 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.MessageFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -94,6 +96,7 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
         displayIncome();
     }
 
+    @SuppressLint("DefaultLocale")
     private void calculateIncome() {
         double totalWeeklyIncome = 0;
         double totalMonthlyIncome = 0;
@@ -139,9 +142,9 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
                 }
             }
         }
-        weeklyIncomeOutput.setText(String.valueOf(totalWeeklyIncome));
-        monthlyIncomeOutput.setText(String.valueOf(totalMonthlyIncome));
-        yearlyIncomeOutput.setText(String.valueOf(totalYearlyIncome));
+        weeklyIncomeOutput.setText(MessageFormat.format("${0}", String.format("%.2f", totalWeeklyIncome)));
+        monthlyIncomeOutput.setText(MessageFormat.format("${0}", String.format("%.2f", totalMonthlyIncome)));
+        yearlyIncomeOutput.setText(MessageFormat.format("${0}", String.format("%.2f", totalYearlyIncome)));
     }
 
     @Override
