@@ -237,13 +237,14 @@ public class JobActivity extends AppCompatActivity implements LoaderManager.Load
                 finish();
                 break;
             case android.R.id.home:
-                if (TextUtils.isEmpty(mTextJobTitle.getText().toString()) && TextUtils.isEmpty(mTextJobDescription.getText().toString())) {
+                if (TextUtils.isEmpty(mTextJobTitle.getText().toString()) && TextUtils.isEmpty(mTextJobDescription.getText().toString())
+                || mTextJobTitle.getText().toString().trim().length() == 0 && mTextJobDescription.getText().toString().trim().length() == 0) {
                     Toast.makeText(JobActivity.this, "Job Title and Job Description is Required", Toast.LENGTH_LONG).show();
                     mIsCancelling = true;
-                } else if (TextUtils.isEmpty(mTextJobTitle.getText().toString())) {
+                } else if (TextUtils.isEmpty(mTextJobTitle.getText().toString()) || mTextJobTitle.getText().toString().trim().length() == 0) {
                     Toast.makeText(JobActivity.this, "Job Title is Required", Toast.LENGTH_LONG).show();
                     mIsCancelling = true;
-                } else if (TextUtils.isEmpty(mTextJobDescription.getText().toString())) {
+                } else if (TextUtils.isEmpty(mTextJobDescription.getText().toString()) || mTextJobDescription.getText().toString().trim().length() == 0) {
                     Toast.makeText(JobActivity.this, "Job Description is Required", Toast.LENGTH_LONG).show();
                     mIsCancelling = true;
                 } else {
