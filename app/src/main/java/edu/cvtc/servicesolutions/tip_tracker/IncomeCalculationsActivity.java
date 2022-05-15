@@ -1,10 +1,16 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,9 +48,7 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
     private TextView weeklyIncomeOutput;
     private TextView monthlyIncomeOutput;
     private TextView yearlyIncomeOutput;
-    private double totalWeeklyIncome = 0;
-    private double totalMonthlyIncome = 0;
-    private double totalYearlyIncome = 0;
+    private ToggleButton toggleButton;
     Calendar currentTime = Calendar.getInstance();
     int dayOfWeek;
     DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("MMM dd yyyy").toFormatter(Locale.ENGLISH);
@@ -56,10 +60,44 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income_calculations);
+        toggleButton = findViewById(R.id.toggle);
+        toggleButton.setOnClickListener(new View.OnClickListener()  {
+
+            @Override
+            public void onClick(View view) {
+                calculateIncome();
+            }
+        });
 
         mDbOpenHelper = new OpenHelper(this);
         initializeDisplayContent();
 
+        weeklyIncomeOutput = findViewById(R.id.weekly_income_output);
+        monthlyIncomeOutput = findViewById(R.id.monthly_income_output);
+        yearlyIncomeOutput = findViewById(R.id.yearly_income_output);
+
+        calculateIncome();
+    }
+
+    private void initializeDisplayContent() {
+        // Retrieve the information from your database
+        IncomeDataManager.loadFromDatabase(mDbOpenHelper);
+        
+        // Set a reference to list of jobs layout
+        mRecyclerItems = (RecyclerView) findViewById(R.id.list_income_by_day);
+        mIncomeLayoutManager = new LinearLayoutManager(this);
+        
+        // No cursor, so pass null
+        mIncomeRecyclerAdapter = new IncomeRecyclerAdapter(this, null);
+        
+        // Display Income
+        displayIncome();
+    }
+
+    private void calculateIncome() {
+        double totalWeeklyIncome = 0;
+        double totalMonthlyIncome = 0;
+        double totalYearlyIncome = 0;
         for (int i = 0; i < income.size(); i++) {
             // Calender uses 0-11 for months instead on 1-12
             int currentMonth = (currentTime.getTime().getMonth()) + 1;
@@ -78,38 +116,32 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
                 double cashAmount = income.get(i).getCashTip();
                 double creditAmount = income.get(i).getCreditTip();
                 double hourlyAmount = hoursWorked * hourlyRate;
-                if ((numberOfMonth - (currentNumberOfMonth - 1) < 8)) {
-                    totalWeeklyIncome += cashAmount + creditAmount + hourlyAmount;
-                }
-                if (date.contains(currentMonthString)) {
-                    totalMonthlyIncome += cashAmount + creditAmount + hourlyAmount;
-                }
-                if (date.contains(String.valueOf(currentYear))) {
-                    totalYearlyIncome += cashAmount + creditAmount + hourlyAmount;
+                if (toggleButton.isChecked()) {
+                    if ((numberOfMonth - (currentNumberOfMonth - 1) < 8)) {
+                        totalWeeklyIncome += cashAmount + creditAmount;
+                    }
+                    if (date.contains(currentMonthString)) {
+                        totalMonthlyIncome += cashAmount + creditAmount;
+                    }
+                    if (date.contains(String.valueOf(currentYear))) {
+                        totalYearlyIncome += cashAmount + creditAmount;
+                    }
+                } else {
+                    if ((numberOfMonth - (currentNumberOfMonth - 1) < 8)) {
+                        totalWeeklyIncome += cashAmount + creditAmount + hourlyAmount;
+                    }
+                    if (date.contains(currentMonthString)) {
+                        totalMonthlyIncome += cashAmount + creditAmount + hourlyAmount;
+                    }
+                    if (date.contains(String.valueOf(currentYear))) {
+                        totalYearlyIncome += cashAmount + creditAmount + hourlyAmount;
+                    }
                 }
             }
         }
-        weeklyIncomeOutput = findViewById(R.id.weekly_income_output);
-        monthlyIncomeOutput = findViewById(R.id.monthly_income_output);
-        yearlyIncomeOutput = findViewById(R.id.yearly_income_output);
         weeklyIncomeOutput.setText(String.valueOf(totalWeeklyIncome));
         monthlyIncomeOutput.setText(String.valueOf(totalMonthlyIncome));
         yearlyIncomeOutput.setText(String.valueOf(totalYearlyIncome));
-    }
-
-    private void initializeDisplayContent() {
-        // Retrieve the information from your database
-        IncomeDataManager.loadFromDatabase(mDbOpenHelper);
-        
-        // Set a reference to list of jobs layout
-        mRecyclerItems = (RecyclerView) findViewById(R.id.list_income_by_day);
-        mIncomeLayoutManager = new LinearLayoutManager(this);
-        
-        // No cursor, so pass null
-        mIncomeRecyclerAdapter = new IncomeRecyclerAdapter(this, null);
-        
-        // Display Income
-        displayIncome();
     }
 
     @Override
@@ -228,5 +260,39 @@ public class IncomeCalculationsActivity extends AppCompatActivity implements Loa
             // change the cursor to null (cleanup)
             mIncomeRecyclerAdapter.changeCursor(null);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_income_calc, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.nav_track_tips) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, IncomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_budget) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, BudgetActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_home) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, JobActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_record_tips) {
+            Intent intent = new Intent(IncomeCalculationsActivity.this, TipRecordActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

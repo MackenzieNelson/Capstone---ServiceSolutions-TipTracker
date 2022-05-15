@@ -140,7 +140,7 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer);
 
         if (drawerLayout != null) {
             navigationView = findViewById(R.id.navigationView);
@@ -156,10 +156,6 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
                     switch (item.getItemId()) {
                         case R.id.nav_home:
                             Log.i("MENU_DRAWER_TAG", "Home item is clicked");
-                            drawerLayout.closeDrawer(GravityCompat.START);
-                            break;
-                        case R.id.nav_track_tips:
-                            Log.i("MENU_DRAWER_TAG", "Track Tip item is clicked");
                             drawerLayout.closeDrawer(GravityCompat.START);
                             break;
                         case R.id.nav_record_tips:
@@ -374,13 +370,27 @@ public class IncomeActivity extends AppCompatActivity implements LoaderManager.L
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-//            return true;
-//        }
         mIsCancelling = true;
         int id = item.getItemId();
-        if (id == R.id.action_cancel) {
-            mIsCancelling = true;
+         if (id == R.id.nav_budget) {
+            Intent intent = new Intent(IncomeActivity.this, BudgetActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_income_calc) {
+            Intent intent = new Intent(IncomeActivity.this, IncomeCalculationsActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(IncomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_home) {
+            Intent intent = new Intent(IncomeActivity.this, JobActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_record_tips) {
+            Intent intent = new Intent(IncomeActivity.this, TipRecordActivity.class);
+            startActivity(intent);
             finish();
         }
         return super.onOptionsItemSelected(item);

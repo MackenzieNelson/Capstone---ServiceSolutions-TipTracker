@@ -21,17 +21,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:text="Cash/Hourly Rate:"
+        android:text="Total/Tips Only:"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <ToggleButton
-        android:id="@+id/cash_hourly_toggle"
+        android:id="@+id/toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:textOff="Total"
+        android:textOn="Cash"
         app:layout_constraintBaseline_toBaselineOf="@id/cash_hourly_rate"
         app:layout_constraintLeft_toRightOf="@id/cash_hourly_rate"/>
 

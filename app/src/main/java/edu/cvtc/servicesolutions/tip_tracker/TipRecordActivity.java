@@ -1,8 +1,11 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -62,8 +65,10 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
     }
 
     private void displayTips() {
-        mRecyclerItems.setLayoutManager(mTipsLayoutManager);
-        mRecyclerItems.setAdapter(mTipRecyclerAdapter);
+        if (mRecyclerItems != null) {
+            mRecyclerItems.setLayoutManager(mTipsLayoutManager);
+            mRecyclerItems.setAdapter(mTipRecyclerAdapter);
+        }
     }
 
     @Override
@@ -98,7 +103,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
                     String tipOrderBy = DatabaseContract.InfoEntry.COLUMN_DATE;
 
                     // populate cursor with results
-                    return db.query(DatabaseContract.InfoEntry.TABLE_JOB,tipColumns,
+                    return db.query(DatabaseContract.InfoEntry.TABLE_INCOME, tipColumns,
                             null, null, null, null,
                             tipOrderBy);
                 }
@@ -124,4 +129,37 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_tip_record, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.nav_track_tips) {
+            Intent intent = new Intent(TipRecordActivity.this, IncomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_budget) {
+            Intent intent = new Intent(TipRecordActivity.this, BudgetActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(TipRecordActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_home) {
+            Intent intent = new Intent(TipRecordActivity.this, JobActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_income_calc) {
+            Intent intent = new Intent(TipRecordActivity.this, IncomeCalculationsActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

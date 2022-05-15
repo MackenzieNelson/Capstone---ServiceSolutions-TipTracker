@@ -2,9 +2,12 @@ package edu.cvtc.servicesolutions.tip_tracker;
 
 import static edu.cvtc.servicesolutions.tip_tracker.IncomeActivity.LOADER_INCOME;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -91,6 +94,40 @@ public class BudgetActivity extends AppCompatActivity {
             return "DEC";
         // default should never need it
         return "JAN";
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_budget, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.nav_track_tips) {
+            Intent intent = new Intent(BudgetActivity.this, IncomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_income_calc) {
+            Intent intent = new Intent(BudgetActivity.this, IncomeCalculationsActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(BudgetActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_home) {
+            Intent intent = new Intent(BudgetActivity.this, JobActivityMain.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_record_tips) {
+            Intent intent = new Intent(BudgetActivity.this, TipRecordActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

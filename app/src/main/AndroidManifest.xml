@@ -52,6 +52,11 @@
             android:label="@string/budget"
             android:parentActivityName=".JobMenuActivity">
         </activity>
+        <activity android:name=".TipRecordActivity"
+            android:exported="false"
+            android:label="Tip Record"
+            android:parentActivityName=".JobMenuActivity">
+        </activity>
     </application>
 
 </manifest>
