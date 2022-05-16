@@ -71,6 +71,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
                     @Override
                     public void onPositiveButtonClick(Object selection) {
                         mSelectedDateText.setText(materialDatePicker.getHeaderText());
+
                     }
                 });
             }
