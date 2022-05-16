@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,8 @@ public class BudgetActivity extends AppCompatActivity {
     private TextView currentMonth;
     private String currentMonthString;
     private double totalIncome = 0;
+    double hourlyAmount = 0;
+    double tipsAmount = 0;
     SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
     Date currentTime = Calendar.getInstance().getTime();
 
@@ -54,8 +57,9 @@ public class BudgetActivity extends AppCompatActivity {
                     double hourlyRate = income.get(i).getHourlyWage();
                     double cashAmount = income.get(i).getCashTip();
                     double creditAmount = income.get(i).getCreditTip();
-                    double hourlyAmount = hoursWorked * hourlyRate;
-                    totalIncome += cashAmount + creditAmount + hourlyAmount;
+                    tipsAmount = cashAmount + creditAmount;
+                    hourlyAmount = hoursWorked * hourlyRate;
+                    totalIncome += tipsAmount + hourlyAmount;
                 }
             }
         }
@@ -64,7 +68,7 @@ public class BudgetActivity extends AppCompatActivity {
         currentMonth = findViewById(R.id.current_month);
         currentMonth.setText(currentMonthString);
         incomeOutput.setText("$" + (totalIncome));
-
+        updateChart();
     }
 
     private String getMonthFormat(int month) {
@@ -129,5 +133,15 @@ public class BudgetActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    public void updateChart() {
+        // Update the text in a center of the chart:
+        TextView numberOfCals = findViewById(R.id.number_of_calories);
+        numberOfCals.setText(String.valueOf(tipsAmount) + " / " + totalIncome);
 
+        // Calculate the slice size and update the pie chart:
+        ProgressBar pieChart = findViewById(R.id.stats_progressbar);
+        double d = (double) tipsAmount / (double) totalIncome;
+        int progress = (int) (d * 100);
+        pieChart.setProgress(progress);
+    }
 }
