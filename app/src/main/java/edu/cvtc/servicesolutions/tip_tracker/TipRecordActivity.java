@@ -23,9 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
-import java.util.Calendar;
-import java.util.TimeZone;
-
 public class TipRecordActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     // Date Range Picker
@@ -40,7 +37,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
     private OpenHelper mDbOpenHelper;
     private RecyclerView mRecyclerItems;
     private LinearLayoutManager mTipsLayoutManager;
-    private TipRecylcerAdapter mTipRecyclerAdapter;
+    private TipRecyclerAdapter mTipRecyclerAdapter;
 
     // Boolean to check if then 'onCreateLoader' method has run
     private boolean mIsCreated = false;
@@ -88,7 +85,7 @@ public class TipRecordActivity extends AppCompatActivity implements LoaderManage
         mTipsLayoutManager = new LinearLayoutManager(this);
 
         // No cursor yet, so pass null
-        mTipRecyclerAdapter = new TipRecylcerAdapter(this, null);
+        mTipRecyclerAdapter = new TipRecyclerAdapter(this, null);
 
         // Display the tips
         displayTips();

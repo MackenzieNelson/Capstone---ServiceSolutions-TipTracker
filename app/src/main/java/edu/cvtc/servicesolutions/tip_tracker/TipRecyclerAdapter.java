@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TipRecylcerAdapter extends RecyclerView.Adapter<TipRecylcerAdapter.ViewHolder> {
+public class TipRecyclerAdapter extends RecyclerView.Adapter<TipRecyclerAdapter.ViewHolder> {
 
     // Member variables
     private final Context mContext;
@@ -25,7 +25,7 @@ public class TipRecylcerAdapter extends RecyclerView.Adapter<TipRecylcerAdapter.
     private int mOriginalCreditTipPosition;
     private int mOriginalDatePosition;
 
-    public TipRecylcerAdapter(Context context, Cursor cursor) {
+    public TipRecyclerAdapter(Context context, Cursor cursor) {
         mContext = context;
         mCursor = cursor;
         mLayoutInflater = LayoutInflater.from(context);
@@ -84,7 +84,6 @@ public class TipRecylcerAdapter extends RecyclerView.Adapter<TipRecylcerAdapter.
         double originalHourlyRate = mCursor.getDouble(mOriginalHourlyRatePosition);
         double originalCashTip = mCursor.getDouble(mOriginalCashTipPosition);
         double originalCreditTip = mCursor.getDouble(mOriginalCreditTipPosition);
-        // Using string until I find an alternative for date.
         String originalDate = mCursor.getString(mOriginalDatePosition);
 
 
