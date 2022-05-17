@@ -3,7 +3,6 @@ package edu.cvtc.servicesolutions.tip_tracker;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,11 +120,11 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mOriginalHoursWorked = itemView.findViewById(R.id.rV_hours_output);
-            mOriginalHourlyRate = itemView.findViewById(R.id.rV_rate_output);
-            mOriginalCashTip = itemView.findViewById(R.id.rV_cash_output);
-            mOriginalCreditTip = itemView.findViewById(R.id.rV_credit_output);
-            mOriginalDate = itemView.findViewById(R.id.rV_date_label);
+            mOriginalHoursWorked = itemView.findViewById(R.id.income_hours_worked);
+            mOriginalHourlyRate = itemView.findViewById(R.id.income_hourly_rate);
+            mOriginalCashTip = itemView.findViewById(R.id.income_cash_tip);
+            mOriginalCreditTip = itemView.findViewById(R.id.income_credit_tip);
+            mOriginalDate = itemView.findViewById(R.id.income_tip_date);
             totalIncome = itemView.findViewById(R.id.rV_total_output);
         }
     }

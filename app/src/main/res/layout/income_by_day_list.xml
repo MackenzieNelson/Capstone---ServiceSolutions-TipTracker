@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/rV_date_label"
+                android:id="@+id/income_tip_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Day Of Week: "
@@ -31,49 +31,49 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/rV_hours_worked_label"
+                android:id="@+id/hours_worked_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Hours Worked:"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/rV_date_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_date_label" />
+                app:layout_constraintStart_toStartOf="@+id/income_tip_date"
+                app:layout_constraintTop_toBottomOf="@+id/income_tip_date" />
 
             <TextView
-                android:id="@+id/rV_hourly_label"
+                android:id="@+id/hourly_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Hourly Rate:"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintEnd_toEndOf="@+id/rV_date_label"
-                app:layout_constraintStart_toStartOf="@+id/rV_hours_worked_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_hours_worked_label" />
+                app:layout_constraintEnd_toEndOf="@+id/income_tip_date"
+                app:layout_constraintStart_toStartOf="@+id/hours_worked_label"
+                app:layout_constraintTop_toBottomOf="@+id/hours_worked_label" />
 
             <TextView
-                android:id="@+id/rV_cash_label"
+                android:id="@+id/cash_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Cash Tips:"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintEnd_toEndOf="@+id/rV_date_label"
+                app:layout_constraintEnd_toEndOf="@+id/income_tip_date"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/rV_hourly_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_hourly_label" />
+                app:layout_constraintStart_toStartOf="@+id/hourly_label"
+                app:layout_constraintTop_toBottomOf="@+id/hourly_label" />
 
             <TextView
-                android:id="@+id/rV_credit_label"
+                android:id="@+id/credit_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Credit Tips:"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintEnd_toEndOf="@+id/rV_date_label"
-                app:layout_constraintStart_toStartOf="@+id/rV_cash_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_cash_label" />
+                app:layout_constraintEnd_toEndOf="@+id/income_tip_date"
+                app:layout_constraintStart_toStartOf="@+id/cash_label"
+                app:layout_constraintTop_toBottomOf="@+id/cash_label" />
 
             <TextView
                 android:id="@+id/rV_total_label"
@@ -82,52 +82,52 @@
                 android:text="Total Income for Day:"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintEnd_toEndOf="@+id/rV_date_label"
-                app:layout_constraintStart_toStartOf="@+id/rV_credit_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_credit_label" />
+                app:layout_constraintEnd_toEndOf="@+id/income_tip_date"
+                app:layout_constraintStart_toStartOf="@+id/credit_label"
+                app:layout_constraintTop_toBottomOf="@+id/credit_label" />
 
             <TextView
-                android:id="@+id/rV_hours_output"
+                android:id="@+id/income_hours_worked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
                 android:text="@string/hours_worked_title"
-                app:layout_constraintBottom_toTopOf="@+id/rV_rate_output"
+                app:layout_constraintBottom_toTopOf="@+id/income_hourly_rate"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/rV_hours_worked_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_date_label" />
+                app:layout_constraintStart_toStartOf="@+id/hours_worked_label"
+                app:layout_constraintTop_toBottomOf="@+id/income_tip_date" />
 
             <TextView
-                android:id="@+id/rV_rate_output"
+                android:id="@+id/income_hourly_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:text="@string/hourly_rate_text"
-                app:layout_constraintBottom_toTopOf="@+id/rV_cash_output"
+                app:layout_constraintBottom_toTopOf="@+id/income_cash_tip"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/rV_hourly_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_hours_worked_label" />
+                app:layout_constraintStart_toStartOf="@+id/hourly_label"
+                app:layout_constraintTop_toBottomOf="@+id/hours_worked_label" />
 
             <TextView
-                android:id="@+id/rV_cash_output"
+                android:id="@+id/income_cash_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
                 android:text="Cash Tips"
-                app:layout_constraintBottom_toTopOf="@+id/rV_credit_output"
+                app:layout_constraintBottom_toTopOf="@+id/income_credit_tip"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rV_hourly_label" />
+                app:layout_constraintTop_toBottomOf="@+id/hourly_label" />
 
             <TextView
-                android:id="@+id/rV_credit_output"
+                android:id="@+id/income_credit_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Credit Tips"
-                app:layout_constraintBottom_toBottomOf="@+id/rV_credit_label"
+                app:layout_constraintBottom_toBottomOf="@+id/credit_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/rV_credit_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_cash_label" />
+                app:layout_constraintStart_toStartOf="@+id/credit_label"
+                app:layout_constraintTop_toBottomOf="@+id/cash_label" />
 
             <TextView
                 android:id="@+id/rV_total_output"
@@ -137,7 +137,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/rV_total_label"
                 app:layout_constraintStart_toStartOf="@+id/rV_total_label"
-                app:layout_constraintTop_toBottomOf="@+id/rV_credit_label" />
+                app:layout_constraintTop_toBottomOf="@+id/credit_label" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

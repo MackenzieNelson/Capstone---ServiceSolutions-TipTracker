@@ -1,5 +1,6 @@
 package edu.cvtc.servicesolutions.tip_tracker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.MessageFormat;
 
 public class TipRecyclerAdapter extends RecyclerView.Adapter<TipRecyclerAdapter.ViewHolder> {
 
@@ -73,6 +76,7 @@ public class TipRecyclerAdapter extends RecyclerView.Adapter<TipRecyclerAdapter.
         return new ViewHolder(itemView);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Move the cursor to the correct row
@@ -89,11 +93,11 @@ public class TipRecyclerAdapter extends RecyclerView.Adapter<TipRecyclerAdapter.
 
         // pass the info
         holder.mId = id;
-        holder.mOriginalHoursWorked.setText(String.valueOf(mOriginalHoursWorkedPosition));
-        holder.mOriginalHourlyRate.setText(String.valueOf(mOriginalHourlyRatePosition));
-//        holder.mOriginalCashTip.setText(String.valueOf(mOriginalCashTipPosition));
-//        holder.mOriginalCreditTip.setText(String.valueOf(mOriginalCreditTipPosition));
-//        holder.mOriginalDate.setText(originalDate);
+        holder.mOriginalHoursWorked.setText(String.format("%.2f", originalHoursWorked));
+        holder.mOriginalHourlyRate.setText(MessageFormat.format("${0}", String.format("%.2f", originalHourlyRate)));
+        holder.mOriginalCashTip.setText(MessageFormat.format("${0}", String.format("%.2f", originalCashTip)));
+        holder.mOriginalCreditTip.setText(MessageFormat.format("${0}", String.format("%.2f", originalCreditTip)));
+        holder.mOriginalDate.setText(originalDate);
     }
 
     @Override
@@ -108,17 +112,17 @@ public class TipRecyclerAdapter extends RecyclerView.Adapter<TipRecyclerAdapter.
         public int mId;
         public final TextView mOriginalHoursWorked;
         public final TextView mOriginalHourlyRate;
-//        public final TextView mOriginalCashTip;
-//        public final TextView mOriginalCreditTip;
-//        public final TextView mOriginalDate;
+        public final TextView mOriginalCashTip;
+        public final TextView mOriginalCreditTip;
+        public final TextView mOriginalDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mOriginalHoursWorked = (TextView) itemView.findViewById(R.id.income_hours_worked);
             mOriginalHourlyRate = (TextView) itemView.findViewById(R.id.income_hourly_rate);
-//            mOriginalCashTip = (TextView) itemView.findViewById(R.id.income_);
-//            mOriginalCreditTip = (TextView) itemView.findViewById(R.id.income_);
-//            mOriginalDate = (TextView) itemView.findViewById(R.id.income_);
+            mOriginalCashTip = (TextView) itemView.findViewById(R.id.income_cash_tip);
+            mOriginalCreditTip = (TextView) itemView.findViewById(R.id.income_credit_tip);
+            mOriginalDate = (TextView) itemView.findViewById(R.id.income_tip_date);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
