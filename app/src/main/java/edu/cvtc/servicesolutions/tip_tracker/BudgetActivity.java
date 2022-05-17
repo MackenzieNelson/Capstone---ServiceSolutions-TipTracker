@@ -57,9 +57,9 @@ public class BudgetActivity extends AppCompatActivity {
                     double hourlyRate = income.get(i).getHourlyWage();
                     double cashAmount = income.get(i).getCashTip();
                     double creditAmount = income.get(i).getCreditTip();
-                    tipsAmount = cashAmount + creditAmount;
+                    tipsAmount += cashAmount + creditAmount;
                     hourlyAmount = hoursWorked * hourlyRate;
-                    totalIncome += tipsAmount + hourlyAmount;
+                    totalIncome += cashAmount + creditAmount + hourlyAmount;
                 }
             }
         }
@@ -135,8 +135,8 @@ public class BudgetActivity extends AppCompatActivity {
     }
     public void updateChart() {
         // Update the text in a center of the chart:
-        TextView numberOfCals = findViewById(R.id.fraction);
-        numberOfCals.setText(String.valueOf(tipsAmount) + " / " + totalIncome);
+        TextView tips = findViewById(R.id.fraction);
+        tips.setText(tipsAmount + " / " + totalIncome);
 
         // Calculate the slice size and update the pie chart:
         ProgressBar pieChart = findViewById(R.id.stats_progressbar);
