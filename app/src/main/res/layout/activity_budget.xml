@@ -26,19 +26,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         />
-    <!-- Title above the chart -->
 
+    <!-- Title above the chart -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tips/Total Income"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/current_month"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/current_month"
+        app:layout_constraintLeft_toLeftOf="@id/current_month"
+         />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewGraph"
@@ -50,7 +48,7 @@
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_month"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -100,9 +98,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
                 <!-- The text that goes in a center of the chart -->
                 <TextView
-                    android:id="@+id/number_of_calories"
+                    android:id="@+id/fraction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1500/2000"
@@ -112,6 +111,38 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Key"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/background_progressbar"/>
+
+
+                <TextView
+                    android:id="@+id/tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tips"
+                    android:textFontWeight="700"
+                    android:textColor="@color/teal_700"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@id/key"
+                    app:layout_constraintLeft_toRightOf="@id/background_progressbar"/>
+
+                <TextView
+                    android:id="@+id/hourly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hourly"
+                    android:textFontWeight="700"
+                    android:textColor="@color/purple_700"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@id/tips"
+                    app:layout_constraintLeft_toRightOf="@id/background_progressbar"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- Doughnut chart ends here -->

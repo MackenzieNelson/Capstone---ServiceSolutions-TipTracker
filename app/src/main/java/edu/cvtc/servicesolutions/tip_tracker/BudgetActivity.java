@@ -135,7 +135,7 @@ public class BudgetActivity extends AppCompatActivity {
     }
     public void updateChart() {
         // Update the text in a center of the chart:
-        TextView numberOfCals = findViewById(R.id.number_of_calories);
+        TextView numberOfCals = findViewById(R.id.fraction);
         numberOfCals.setText(String.valueOf(tipsAmount) + " / " + totalIncome);
 
         // Calculate the slice size and update the pie chart:
