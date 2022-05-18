@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    buttonView.setText("Night Mode");
+                    buttonView.setText("Dark Mode");
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     buttonView.setText("Light Mode");
@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         switchBtn.setChecked(isNightModeOn);
 
         if (isNightModeOn) {
-            switchBtn.setText("Night Mode");
+            switchBtn.setText("Dark Mode");
         } else {
             switchBtn.setText("Light Mode");
         }
